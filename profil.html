@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengembang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-deep: #0D47A1;
+            --blue-royal: #4169E1;
+            --blue-main: #1976D2;
+            --bg-soft: #f3f6ff;
+            --text-main: #0b1a33;
+            --text-muted: #5c6f92;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(65, 105, 225, 0.18), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(25, 118, 210, 0.22), transparent 55%),
+                #0D47A1;
+            color: var(--text-main);
+            padding: 16px 0 32px;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            margin-top: 12px;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.96), rgba(65, 105, 225, 0.98));
+            border-radius: 36px;
+            padding: 2px;
+            box-shadow: 0 24px 60px rgba(10, 44, 110, 0.4);
+        }
+
+        .card-inner {
+            border-radius: 34px;
+            background:
+                radial-gradient(circle at top, rgba(255, 255, 255, 0.97), rgba(241, 245, 255, 0.99));
+            padding: 26px 26px 30px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(25, 118, 210, 0.06);
+            border: 1px solid rgba(25, 118, 210, 0.18);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(13, 71, 161, 0.9);
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--blue-main), var(--blue-royal));
+            box-shadow: 0 0 8px rgba(65, 105, 225, 0.9);
+        }
+
+        .headline {
+            margin-top: 10px;
+            font-size: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.04em;
+            color: #0b1a33;
+        }
+
+        .headline span {
+            background: linear-gradient(135deg, var(--blue-main), var(--blue-royal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            margin-top: 6px;
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            max-width: 540px;
+        }
+
+        .layout {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .bio-card {
+            padding: 16px 18px 18px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(25, 118, 210, 0.02), rgba(65, 105, 225, 0.06));
+            border: 1px solid rgba(25, 118, 210, 0.12);
+        }
+
+        .bio-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(13, 71, 161, 0.9);
+            margin-bottom: 4px;
+        }
+
+        .bio-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0b1a33;
+            margin-bottom: 10px;
+        }
+
+        .bio-text {
+            font-size: 0.94rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        .bio-text + .bio-text {
+            margin-top: 10px;
+        }
+
+        .side-card {
+            position: relative;
+            padding: 18px 18px 20px;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at top left, rgba(25, 118, 210, 0.24), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(65, 105, 225, 0.32), transparent 55%),
+                linear-gradient(145deg, #0D47A1, #1E88E5);
+            color: #f5f8ff;
+            overflow: hidden;
+        }
+
+        .side-glow {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 10% 0, rgba(187, 222, 251, 0.8), transparent 45%),
+                radial-gradient(circle at 90% 100%, rgba(227, 242, 253, 0.5), transparent 50%);
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .side-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar-ring {
+            width: 172px;
+            height: 172px;
+            border-radius: 999px;
+            border: 2px solid rgba(227, 242, 253, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 0, #ffffff, rgba(227, 242, 253, 0.4));
+            box-shadow: 0 16px 35px rgba(5, 23, 70, 0.7);
+        }
+
+        .avatar-inner {
+            width: 148px;
+            height: 148px;
+            border-radius: 999px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(5, 23, 70, 0.6);
+        }
+
+        .avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .side-name {
+            margin-top: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .side-role {
+            font-size: 0.9rem;
+            color: rgba(227, 242, 253, 0.9);
+        }
+
+        .side-meta {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: rgba(227, 242, 253, 0.92);
+        }
+
+        .badge-row {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge-pill {
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(13, 71, 161, 0.3);
+            border: 1px solid rgba(227, 242, 253, 0.5);
+            backdrop-filter: blur(12px);
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.78rem;
+            color: #ffffff;
+        }
+
+        @media (max-width: 880px) {
+            .card-inner {
+                padding: 20px 18px 24px;
+            }
+
+            .headline {
+                font-size: 1.7rem;
+            }
+
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .side-card {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 10px 0 24px;
+            }
+
+            .shell {
+                padding: 0 14px;
+            }
+
+            .headline {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="card">
+            <div class="card-inner">
+                <div class="pill">
+                    <span class="pill-dot"></span>
+                    PROFIL PENGEMBANG
+                </div>
+
+                <h1 class="headline">
+                    Elfrida Situmorang<br><span>Pengembang Media Pembelajaran</span>
+                </h1>
+
+                <p class="subtitle">
+                    Sekilas tentang penulis di balik pengembangan media pembelajaran Google Sites
+                    pada materi rias wajah panggung untuk siswa SMK.
+                </p>
+
+                <div class="layout">
+                    <div class="bio-card">
+                        <div class="bio-tag">Tentang Penulis</div>
+                        <div class="bio-title">Elfrida Situmorang (El)</div>
+
+                        <p class="bio-text">
+                            Penulis bernama Elfrida Situmorang yang lebih akrab disapa el. Penulis yang lahir
+                            di Pangkalan Kerinci, Riau pada 28 April 2002 ini merupakan mahasiswa Universitas
+                            Negeri Medan, Jurusan Pendidikan Kesejahteraan Keluarga (PKK), Program Studi
+                            Pendidikan Tata Rias. Saat ini penulis berada pada semester akhir dan sedang dalam
+                            tahap penyusunan skripsi.
+                        </p>
+
+                        <p class="bio-text">
+                            Penulis berharap karya sederhana ini dapat diterima dengan baik dan memberikan
+                            manfaat yang nyata bagi siapa pun yang memanfaatkannya, khususnya peserta didik
+                            yang sedang mempelajari rias wajah panggung. Media pembelajaran ini dikembangkan
+                            sebagai salah satu luaran dari penyusunan skripsi dengan judul
+                            <strong>"Pengembangan Media Pembelajaran Google Sites Pada Materi Rias Wajah Panggung
+                            Siswa Kelas XI Tata Kecantikan dan Spa SMK Negeri 1 Beringin"</strong>.
+                        </p>
+
+                        <p class="bio-text">
+                            Melalui media ini, penulis berupaya menghadirkan pengalaman belajar yang lebih
+                            interaktif, terstruktur, dan mudah diakses sehingga materi rias wajah panggung
+                            dapat dipahami dengan jelas baik dari sisi konsep maupun praktik.
+                        </p>
+                    </div>
+
+                    <aside class="side-card">
+                        <div class="side-glow"></div>
+                        <div class="side-content">
+                            <div class="avatar-ring">
+                                <div class="avatar-inner">
+                                    <img src="barugsite/materi/assets/profil.jpeg" alt="Foto profil Elfrida Situmorang">
+                                </div>
+                            </div>
+                            <div class="side-name">Elfrida Situmorang</div>
+                            <div class="side-role">Mahasiswa Pendidikan Tata Rias, Universitas Negeri Medan</div>
+
+                            <p class="side-meta">
+                                Lahir di Pangkalan Kerinci, Riau, 28 April 2002. Memiliki minat pada dunia
+                                tata rias, khususnya rias wajah panggung dan pengembangan media pembelajaran
+                                yang adaptif terhadap teknologi digital.
+                            </p>
+
+                            <div class="badge-row">
+                                <span class="badge-pill">Pendidikan Tata Rias</span>
+                                <span class="badge-pill">Universitas Negeri Medan</span>
+                                <span class="badge-pill">Media Pembelajaran</span>
+                                <span class="badge-pill">Rias Wajah Panggung</span>
+                            </div>
+
+                            <p class="footer-note">
+                                Halaman profil ini disusun sebagai pelengkap media pembelajaran Google Sites,
+                                sehingga pembaca dapat mengenal lebih dekat sosok pengembang di balik materi.
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

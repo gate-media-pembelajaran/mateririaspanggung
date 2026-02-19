@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman Materi & Glosarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-deep: #0D47A1;
+            --blue-royal: #4169E1;
+            --blue-main: #1976D2;
+            --bg-soft: #f3f6ff;
+            --text-main: #0b1a33;
+            --text-muted: #5c6f92;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(65, 105, 225, 0.18), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(25, 118, 210, 0.22), transparent 55%),
+                #0D47A1;
+            color: var(--text-main);
+            padding: 16px 0 32px;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            margin-top: 12px;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.96), rgba(65, 105, 225, 0.98));
+            border-radius: 36px;
+            padding: 2px;
+            box-shadow: 0 24px 60px rgba(10, 44, 110, 0.4);
+        }
+
+        .card-inner {
+            border-radius: 34px;
+            background:
+                radial-gradient(circle at top, rgba(255, 255, 255, 0.97), rgba(241, 245, 255, 0.99));
+            padding: 26px 26px 30px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(25, 118, 210, 0.06);
+            border: 1px solid rgba(25, 118, 210, 0.18);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(13, 71, 161, 0.9);
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--blue-main), var(--blue-royal));
+            box-shadow: 0 0 8px rgba(65, 105, 225, 0.9);
+        }
+
+        .headline {
+            margin-top: 10px;
+            font-size: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.04em;
+            color: #0b1a33;
+        }
+
+        .headline span {
+            background: linear-gradient(135deg, var(--blue-main), var(--blue-royal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            margin-top: 6px;
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            max-width: 620px;
+        }
+
+        .section-title {
+            margin-top: 26px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blue-deep);
+        }
+
+        .summary-grid {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .summary-card {
+            padding: 14px 16px 16px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(25, 118, 210, 0.02), rgba(65, 105, 225, 0.06));
+            border: 1px solid rgba(25, 118, 210, 0.12);
+        }
+
+        .summary-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(13, 71, 161, 0.9);
+            margin-bottom: 4px;
+        }
+
+        .summary-heading {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #0b1a33;
+            margin-bottom: 6px;
+        }
+
+        .summary-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        .glossary-grid {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .glossary-card {
+            padding: 12px 14px 13px;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid rgba(13, 71, 161, 0.14);
+            box-shadow: 0 10px 22px rgba(15, 52, 96, 0.08);
+        }
+
+        .glossary-term {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--blue-deep);
+            margin-bottom: 4px;
+        }
+
+        .glossary-def {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        .glossary-term span {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 880px) {
+            .card-inner {
+                padding: 20px 18px 24px;
+            }
+
+            .headline {
+                font-size: 1.7rem;
+            }
+
+            .summary-grid,
+            .glossary-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 10px 0 24px;
+            }
+
+            .shell {
+                padding: 0 14px;
+            }
+
+            .headline {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="card">
+            <div class="card-inner">
+                <div class="pill">
+                    <span class="pill-dot"></span>
+                    RANGKUMAN MATERI
+                </div>
+
+                <h1 class="headline">
+                    Rangkuman &amp; Glosarium<br><span>Rias Wajah Panggung</span>
+                </h1>
+
+                <p class="subtitle">
+                    Ringkasan poin-poin penting dari setiap materi serta glosarium istilah yang sering
+                    digunakan dalam rias wajah panggung untuk membantu pemahaman peserta didik.
+                </p>
+
+                <div class="section-title">Rangkuman Materi</div>
+
+                <div class="summary-grid">
+                    <article class="summary-card">
+                        <div class="summary-label">Materi 1</div>
+                        <h2 class="summary-heading">Pengertian, Tujuan, dan Ciri Rias Wajah Panggung</h2>
+                        <p class="summary-text">
+                            Rias wajah panggung adalah riasan yang digunakan untuk pertunjukan di atas panggung
+                            dengan penekanan pada efek tertentu pada mata, hidung, alis, dan bibir agar wajah
+                            tampak menonjol dan mudah terlihat dari jarak jauh. Tujuan utamanya adalah
+                            memperkuat karakter tokoh, watak, peran, dan tema pementasan, sekaligus
+                            menyempurnakan penampilan. Ciri-cirinya antara lain penggunaan <em>foundation</em> lebih
+                            terang, permukaan kulit tampak halus dan rata, mata menjadi pusat perhatian dengan
+                            kreasi <em>eyeshadow</em> dan <em>eyeliner</em>, penggunaan bulu mata palsu, serta warna-warna
+                            kosmetik yang tegas dan kontras.
+                        </p>
+                    </article>
+
+                    <article class="summary-card">
+                        <div class="summary-label">Materi 2</div>
+                        <h2 class="summary-heading">Prinsip Dasar Rias Wajah Panggung</h2>
+                        <p class="summary-text">
+                            Prinsip dasar rias wajah panggung meliputi pertimbangan jarak penonton dengan
+                            panggung, tata cahaya, media pertunjukan, pemilihan warna kosmetik, dan teknik
+                            <em>contouring</em>. Semakin jauh jarak dan semakin kuat lampu panggung, riasan harus
+                            semakin tegas. Warna kosmetik yang digunakan cenderung kontras dan menarik
+                            perhatian, namun tetap disesuaikan dengan karakter dan konsep pementasan. <em>Shade</em>
+                            dan <em>tint</em> diaplikasikan lebih jelas dibanding rias korektif biasa agar relief wajah
+                            tetap terlihat di bawah sorotan lampu.
+                        </p>
+                    </article>
+
+                    <article class="summary-card">
+                        <div class="summary-label">Materi 3</div>
+                        <h2 class="summary-heading">Kategori dan Klasifikasi Rias Wajah Panggung</h2>
+                        <p class="summary-text">
+                            Rias panggung terbagi atas dua kategori utama, yaitu <em>prosthetic</em> dan <em>straight make up</em>.
+                            <em>Prosthetic</em> atau <em>character make up</em> digunakan untuk mengubah atau menambah bentuk
+                            wajah sehingga sesuai dengan karakter tertentu, misalnya tokoh teater atau penari
+                            tradisional. <em>Straight make up</em> atau rias korektif bertujuan menonjolkan kelebihan
+                            dan menyamarkan kekurangan tanpa perubahan ekstrem, banyak digunakan pada peragawati,
+                            penyanyi, penari modern, serta pembawa acara. Berdasarkan klasifikasi, rias panggung
+                            dibagi menjadi tradisional dan modern yang disesuaikan dengan jenis pertunjukan.
+                        </p>
+                    </article>
+
+                    <article class="summary-card">
+                        <div class="summary-label">Materi 4</div>
+                        <h2 class="summary-heading">Alat, Bahan, Lenan, dan Kosmetik</h2>
+                        <p class="summary-text">
+                            Alat tata rias panggung meliputi kuas set, spons, <em>powder puff</em>, palet stainless,
+                            pinset, penjepit bulu mata, dan perlengkapan lain yang membantu aplikasi kosmetik
+                            secara higienis dan presisi. Bahan dan lenan seperti kapas, <em>cotton bud</em>, tisu, <em>cape
+                            make up</em>, handuk, dan <em>hair bando</em> digunakan untuk menjaga kebersihan serta kenyamanan
+                            klien. Kosmetik yang dipakai antara lain <em>milk cleanser</em>, penyegar, pelembab, <em>primer</em>,
+                            <em>foundation</em>, <em>concealer</em>, <em>contour set</em>, <em>blush on</em>, bedak tabur, bedak padat, <em>eyeshadow</em>,
+                            <em>eyeliner</em>, <em>maskara</em>, pensil alis, <em>highlighter</em>, <em>lipstick</em>, serta lem bulu mata palsu.
+                        </p>
+                    </article>
+
+                    <article class="summary-card">
+                        <div class="summary-label">Materi 5</div>
+                        <h2 class="summary-heading">Prosedur Rias Wajah Panggung Peragawati</h2>
+                        <p class="summary-text">
+                            Prosedur rias wajah panggung dimulai dari persiapan pribadi perias, penataan area kerja,
+                            pengecekan alat, bahan, lenan, kosmetik, serta persiapan model atau klien. Tahap
+                            pelaksanaan meliputi pembersihan dan penyegaran wajah, analisis kondisi kulit,
+                            pengaplikasian pelembab dan <em>primer</em>, <em>foundation</em>, koreksi dengan <em>shading</em> dan <em>tint</em>, lalu
+                            penguncian dengan bedak tabur dan bedak padat. Selanjutnya dilakukan penguatan bentuk
+                            wajah, rias mata, alis, pipi, dan bibir sesuai desain. Tahap akhir adalah evaluasi hasil
+                            rias dan berkemas dengan membersihkan kembali area kerja.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="section-title" style="margin-top: 28px;">Glosarium Istilah</div>
+
+                <div class="glossary-grid">
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Shading</em><span>kosmetik</span></div>
+                        <p class="glossary-def">
+                            Shading adalah teknik dalam tata rias yang menggunakan warna lebih gelap dari warna kulit
+                            asli untuk menciptakan efek bayangan pada wajah sehingga bentuk wajah tampak lebih tegas,
+                            proporsional, dan berdimensi. Shading biasanya diaplikasikan pada bagian yang ingin
+                            disamarkan atau dibuat tampak lebih tirus.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Tint</em><span>kosmetik</span></div>
+                        <p class="glossary-def">
+                            Tint adalah teknik atau produk rias dengan warna yang lebih terang dari warna kulit asli
+                            yang bertujuan untuk menonjolkan, memajukan, atau memberi kesan lebih luas dan tinggi pada
+                            bagian wajah tertentu, misalnya tulang pipi, tengah dahi, batang hidung, dan dagu.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Foundation</em><span>alas bedak</span></div>
+                        <p class="glossary-def">
+                            Foundation adalah alas bedak yang berfungsi meratakan warna kulit, menyamarkan noda,
+                            sekaligus menjadi dasar sebelum pengaplikasian bedak. Pada rias panggung, foundation
+                            biasanya dipilih satu sampai dua tingkat lebih terang dari warna kulit agar wajah tetap
+                            tampak jelas di bawah sorotan lampu.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Primer</em><span>dasar rias</span></div>
+                        <p class="glossary-def">
+                            Primer adalah produk yang diaplikasikan setelah pelembab dan sebelum foundation untuk
+                            menyamarkan pori-pori, menghaluskan tekstur kulit, serta membantu menahan minyak berlebih
+                            sehingga riasan lebih tahan lama dan tidak mudah bergeser.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Highlighter</em><span>penegas</span></div>
+                        <p class="glossary-def">
+                            Highlighter adalah kosmetik dengan efek mengkilap yang digunakan pada bagian wajah yang
+                            menonjol seperti tulang pipi, tulang alis, batang hidung, dahi, dan dagu untuk memberikan
+                            kesan bercahaya, segar, dan dimensi yang lebih hidup pada riasan.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Contour</em><span>bentuk wajah</span></div>
+                        <p class="glossary-def">
+                            Contour adalah teknik pembentukan wajah menggunakan kombinasi shading dan tint untuk
+                            menyeimbangkan proporsi wajah. Pada rias panggung, contour dibuat lebih tegas agar relief
+                            wajah tetap terlihat dari jarak jauh dan di bawah pencahayaan kuat.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Blush On</em><span>perona pipi</span></div>
+                        <p class="glossary-def">
+                            Blush on adalah kosmetik perona pipi yang memberikan kesan segar dan sehat. Pada rias
+                            panggung, pengaplikasiannya dilakukan di atas tulang pipi dengan arah usap ke samping luar
+                            dan menyatu dengan garis rambut di pelipis agar tidak memberi kesan pipi turun.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Eyeshadow</em><span>perona mata</span></div>
+                        <p class="glossary-def">
+                            Eyeshadow adalah kosmetik yang memberikan warna atau bayangan pada kelopak mata dan
+                            sekitarnya. Dalam rias panggung, eyeshadow digunakan dengan warna-warna yang lebih tegas
+                            dan kontras untuk menonjolkan mata sebagai pusat perhatian penonton.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Eyeliner</em><span>garis mata</span></div>
+                        <p class="glossary-def">
+                            Eyeliner adalah produk berbentuk cair, gel, atau pensil yang digunakan untuk menggambar
+                            garis di sepanjang garis mata atas maupun bawah. Fungsinya untuk mempertegas bentuk mata,
+                            membuat mata tampak lebih hidup dan ekspresif di atas panggung.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Loose powder</em><span>bedak tabur</span></div>
+                        <p class="glossary-def">
+                            Bedak tabur adalah bedak bertekstur butiran halus yang digunakan setelah foundation untuk
+                            mengunci riasan, mengurangi kilap, dan membuat permukaan kulit tampak lebih halus. Biasanya
+                            diaplikasikan dengan puff atau kuas besar.
+                        </p>
+                    </article>
+
+                    <article class="glossary-card">
+                        <div class="glossary-term"><em>Compact powder</em><span>bedak padat</span></div>
+                        <p class="glossary-def">
+                            Bedak padat adalah bedak yang dikemasan dalam bentuk press powder dan praktis dibawa.
+                            Digunakan untuk sentuhan akhir atau touch up agar wajah tetap halus dan bebas kilap selama
+                            pertunjukan berlangsung.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemen Evaluasi dan Kolaborasi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-deep: #0D47A1;
+            --blue-main: #1976D2;
+            --blue-soft: #e3f2fd;
+            --bg-soft: #f3f6ff;
+            --text-main: #0b1a33;
+            --text-muted: #5c6f92;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(65, 105, 225, 0.14), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(25, 118, 210, 0.18), transparent 55%),
+                #0D47A1;
+            color: var(--text-main);
+            padding: 16px 0 32px;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            margin-top: 12px;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.96), rgba(65, 105, 225, 0.98));
+            border-radius: 36px;
+            padding: 2px;
+            box-shadow: 0 24px 60px rgba(10, 44, 110, 0.4);
+        }
+
+        .card-inner {
+            border-radius: 34px;
+            background:
+                radial-gradient(circle at top, rgba(255, 255, 255, 0.97), rgba(241, 245, 255, 0.99));
+            padding: 26px 26px 30px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(25, 118, 210, 0.06);
+            border: 1px solid rgba(25, 118, 210, 0.18);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(13, 71, 161, 0.9);
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--blue-main), #4169E1);
+            box-shadow: 0 0 8px rgba(65, 105, 225, 0.9);
+        }
+
+        .headline {
+            margin-top: 10px;
+            font-size: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.04em;
+            color: #0b1a33;
+        }
+
+        .headline span {
+            background: linear-gradient(135deg, var(--blue-main), #4169E1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .intro {
+            margin-top: 14px;
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .section-label {
+            margin-top: 26px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(13, 71, 161, 0.9);
+        }
+
+        .section-text {
+            margin-top: 8px;
+            font-size: 0.94rem;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .accordion-list {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .accordion-item {
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(25, 118, 210, 0.02), rgba(65, 105, 225, 0.06));
+            border: 1px solid rgba(25, 118, 210, 0.12);
+            overflow: hidden;
+        }
+
+        .accordion-item details {
+            padding: 14px 16px 16px;
+        }
+
+        .accordion-item summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .accordion-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .summary-label {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .summary-title {
+            font-weight: 700;
+        }
+
+        .summary-subtitle {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+
+        .summary-icon {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(25, 118, 210, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--blue-deep);
+            background: #ffffff;
+            box-shadow: 0 0 0 2px rgba(227, 242, 253, 0.9);
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        details[open] .summary-icon {
+            transform: rotate(90deg);
+            background: var(--blue-main);
+            color: #ffffff;
+        }
+
+        .accordion-body {
+            margin-top: 10px;
+        }
+
+        .accordion-text {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .iframe-shell {
+            border-radius: 16px;
+            background: var(--bg-soft);
+            padding: 10px;
+            border: 1px solid rgba(25, 118, 210, 0.14);
+        }
+
+        .iframe-shell iframe {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .iframe-quiz {
+            min-height: 820px;
+        }
+
+        .iframe-lkpd {
+            min-height: 520px;
+        }
+
+        .note {
+            margin-top: 14px;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+        }
+
+        .note span {
+            font-weight: 600;
+            color: var(--blue-main);
+        }
+
+        .greeting {
+            margin-top: 12px;
+            font-size: 0.94rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+        }
+
+        @media (max-width: 720px) {
+            .card-inner {
+                padding: 22px 18px 24px;
+            }
+
+            .headline {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 10px 0 22px;
+            }
+
+            .shell {
+                padding: 0 14px;
+            }
+
+            .headline {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="shell">
+        <section class="card">
+            <div class="card-inner">
+                <div class="pill">
+                    <span class="pill-dot"></span>
+                    ELEMEN EVALUASI &amp; KOLABORASI
+                </div>
+
+                <h1 class="headline">
+                    Evaluasi &amp; Kolaborasi<br><span>Media Pembelajaran Rias Wajah Panggung</span>
+                </h1>
+
+                <p class="intro">
+                    Elemen Evaluasi dan Kolaborasi dalam media pembelajaran Rias Wajah Panggung berfungsi untuk
+                    menilai sejauh mana siswa memahami konsep dan teknik tata rias panggung sekaligus memberikan
+                    umpan balik langsung dari guru. Melalui evaluasi dan kerja kolaboratif, siswa dapat mengenali
+                    kekuatan serta kelemahan hasil riasannya dan memperbaiki performa pada praktik berikutnya.
+                </p>
+
+                <p class="greeting">
+                    Selamat mengerjakan dan berdiskusi bersama teman serta guru 🥰
+                </p>
+
+                <div class="section-label">Elemen Evaluasi</div>
+                <p class="section-text">
+                    Berilah jawaban yang paling tepat dari opsi yang telah tersedia untuk setiap pertanyaan.
+                    Gunakan hasil evaluasi ini sebagai bahan refleksi dan diskusi dengan guru.
+                </p>
+
+                <div class="accordion-list">
+                    <div class="accordion-item">
+                        <details>
+                            <summary>
+                                <div class="summary-label">
+                                    <span class="summary-title">Quiz Evaluasi (Pilihan Ganda)</span>
+                                    <span class="summary-subtitle">Menilai pemahaman konsep dan teknik rias wajah panggung</span>
+                                </div>
+                                <div class="summary-icon">▶</div>
+                            </summary>
+                            <div class="accordion-body">
+                                <p class="accordion-text">
+                                    Kerjakan seluruh soal dengan cermat. Pastikan membaca setiap pertanyaan dan pilihan
+                                    jawaban sampai tuntas sebelum menentukan jawaban yang paling tepat.
+                                </p>
+                                <div class="iframe-shell">
+                                    <iframe
+                                        class="iframe-quiz"
+                                        src="https://forms.gle/9cXhuLM9ak6cjpYr5"
+                                        loading="lazy"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="accordion-item">
+                        <details>
+                            <summary>
+                                <div class="summary-label">
+                                    <span class="summary-title">LKPD Rias Wajah Panggung</span>
+                                    <span class="summary-subtitle">Lembar Kerja Peserta Didik untuk praktik dan refleksi hasil rias</span>
+                                </div>
+                                <div class="summary-icon">▶</div>
+                            </summary>
+                            <div class="accordion-body">
+                                <p class="accordion-text">
+                                    Lembar Kerja Peserta Didik (LKPD) ini membantu kamu merencanakan, mendokumentasikan,
+                                    dan merefleksikan proses rias wajah panggung yang dilakukan, baik secara individu
+                                    maupun berkelompok. Ikuti petunjuk yang tertera pada LKPD, lalu diskusikan hasilnya
+                                    bersama guru dan teman sekelas.
+                                </p>
+                                <div class="iframe-shell">
+                                    <iframe
+                                        class="iframe-lkpd"
+                                        src="https://drive.google.com/file/d/1jI7HfJw2v-uO07cia0uwKynwzn15sejO/preview"
+                                        loading="lazy"
+                                        allow="autoplay">
+                                    </iframe>
+                                </div>
+                                <p class="note">
+                                    Jika LKPD tidak tampil dengan baik, kamu dapat membukanya langsung melalui ikon
+                                    <span>pop-out</span> di pojok kanan atas tampilan dokumen.
+                                </p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
