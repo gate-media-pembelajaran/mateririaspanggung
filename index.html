@@ -287,9 +287,56 @@
 
         .bullet-list li + li { margin-top: 4px; }
 
+        .video-grid {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, rgba(25, 118, 210, 0.02), rgba(65, 105, 225, 0.06));
+            border-radius: 20px;
+            border: 1px solid rgba(25, 118, 210, 0.12);
+            padding: 10px 10px 14px;
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(13, 71, 161, 0.25);
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-title {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+        }
+
+        .video-note {
+            margin-top: 2px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         @media (max-width: 680px) {
             .items-grid {
                 grid-template-columns: 1fr;
+            }
+            .video-grid {
+                grid-template-columns: minmax(0, 1fr);
             }
         }
 
@@ -1108,7 +1155,61 @@
                         </div>
                     </div>
 
-                </div><!-- end berkemas grid -->
+            </div><!-- end berkemas grid -->
+            </div>
+
+            <div class="content-section" id="video">
+                <div class="section-label">Video</div>
+                <h1>Video Pembelajaran</h1>
+                <p class="section-text">
+                    Kumpulan video yang mendukung pemahaman materi rias wajah panggung untuk peragawati.
+                </p>
+
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/sVcMoKKu6mw"
+                                    title="Video pembelajaran 1"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="video-title">Video 1</div>
+                        <div class="video-note">Materi pendukung rias wajah panggung.</div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/a56CqDl3P8Y"
+                                    title="Video pembelajaran 2"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="video-title">Video 2</div>
+                        <div class="video-note">Pendalaman teknik rias peragawati.</div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/NxgdeAGh5po"
+                                    title="Video pembelajaran 3"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="video-title">Video 3</div>
+                        <div class="video-note">Contoh aplikasi rias wajah untuk panggung.</div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/vhgOUfuVI4w"
+                                    title="Video pembelajaran 4"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="video-title">Video 4</div>
+                        <div class="video-note">Latihan lanjutan dan contoh hasil akhir.</div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -1124,7 +1225,8 @@
             "Materi 2": "materi-2",
             "Materi 3": "materi-3",
             "Materi 4": "materi-4",
-            "Materi 5": "materi-5"
+            "Materi 5": "materi-5",
+            "Video": "video"
         };
 
         function setActive(button) {
@@ -1145,10 +1247,6 @@
         buttons.forEach(function (button) {
             button.addEventListener("click", function () {
                 var label = button.textContent.trim();
-                if (label === "Video") {
-                    window.location.href = "video.html";
-                    return;
-                }
                 var targetId = sectionMap[label];
                 if (targetId) { showSection(targetId); }
                 setActive(button);
