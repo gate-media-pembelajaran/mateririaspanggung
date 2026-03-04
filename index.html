@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Pembelajaran Rias Wajah Panggung</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Materi Rias Wajah Panggung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue-deep: #0D47A1;
@@ -13,318 +13,243 @@
             --bg-soft: #f3f6ff;
             --text-main: #0b1a33;
             --text-muted: #5c6f92;
+            --card-bg: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: 
-                radial-gradient(circle at top left, rgba(65, 105, 225, 0.18), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(25, 118, 210, 0.22), transparent 55%),
-                #0D47A1;
+            background: radial-gradient(circle at top left, rgba(65,105,225,0.18), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(25,118,210,0.22), transparent 55%),
+                        #0D47A1;
+            padding: 16px 0;
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-y: auto;
             overflow-x: hidden;
         }
 
-        /* TAB NAVIGATION */
-        .tabs-container {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-            border-bottom: 1.5px solid rgba(25, 118, 210, 0.12);
-        }
-
-        .tabs-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding: 0 10px;
-        }
-
-        .tabs-wrapper::-webkit-scrollbar {
-            display: none;
-        }
-
-        .tab-btn {
-            padding: 18px 24px;
-            border: none;
-            background: none;
-            font-family: inherit;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .tab-btn:hover {
-            color: var(--blue-main);
-            background: rgba(25, 118, 210, 0.04);
-        }
-
-        .tab-btn.active {
-            color: var(--blue-deep);
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20%;
-            right: 20%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--blue-main), var(--blue-royal));
-            border-radius: 4px 4px 0 0;
-            box-shadow: 0 -2px 10px rgba(65, 105, 225, 0.4);
-        }
-
-        /* CONTENT SHELL */
-        .content-shell {
-            flex: 1;
+        .shell {
             width: 100%;
             max-width: 1040px;
-            margin: 20px auto 40px;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 0 20px 120px;
+            position: relative;
         }
 
-        .card-main {
-            background: linear-gradient(135deg, rgba(13, 71, 161, 0.96), rgba(65, 105, 225, 0.98));
-            border-radius: 36px;
+        .card {
+            background: linear-gradient(135deg, rgba(13,71,161,0.96), rgba(65,105,225,0.98));
+            border-radius: 32px;
             padding: 2px;
-            box-shadow: 0 30px 70px rgba(10, 44, 110, 0.45);
+            box-shadow: 0 24px 60px rgba(10,44,110,0.35);
         }
 
         .card-inner {
-            border-radius: 34px;
-            background: 
-                radial-gradient(circle at top right, rgba(255, 255, 255, 0.98), rgba(241, 245, 255, 0.99));
-            padding: 45px 50px;
-            min-height: 600px;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.96), rgba(241,245,255,0.98));
+            border-radius: 30px;
+            padding: 22px 24px 26px;
         }
 
-        /* SECTION STYLING */
+        .tabs-strip-wrapper { overflow-x: auto; padding-bottom: 4px; }
+        .tabs-strip-wrapper::-webkit-scrollbar { height: 4px; }
+        .tabs-strip-wrapper::-webkit-scrollbar-thumb { background: rgba(13,71,161,0.45); border-radius: 999px; }
+
+        .tabs-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            background: rgba(13,71,161,0.08);
+            border-radius: 999px;
+            padding: 6px;
+            box-shadow: 0 10px 26px rgba(13,71,161,0.18);
+        }
+
+        .tab-btn {
+            flex: 1 1 120px;
+            min-width: 120px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, #1976D2, #4169E1);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn.secondary {
+            background: rgba(255,255,255,0.9);
+            color: #0D47A1;
+            border-color: rgba(187,222,251,0.9);
+        }
+
+        .tab-btn:hover {
+            box-shadow: 0 8px 18px rgba(13,71,161,0.35);
+            transform: translateY(-1px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #0D47A1, #1976D2);
+            border-color: rgba(255,255,255,0.9);
+        }
+
         .content-section {
+            margin-top: 10px;
             display: none;
-            animation: fadeIn 0.6s ease-out forwards;
+            padding: 14px 16px 18px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(25,118,210,0.02), rgba(65,105,225,0.06));
+            border: 1px solid rgba(25,118,210,0.12);
         }
 
-        .content-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .content-section.active-section { display: block; }
 
         .section-label {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            border-radius: 999px;
-            background: rgba(25, 118, 210, 0.08);
-            border: 1.5px solid rgba(25, 118, 210, 0.2);
-            font-size: 0.82rem;
-            font-weight: 800;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--blue-deep);
-            margin-bottom: 24px;
-        }
-
-        .content-section h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.15;
-            margin-bottom: 28px;
-            letter-spacing: -0.03em;
-        }
-
-        .subheading {
-            font-size: 1.35rem;
+            gap: 6px;
+            font-size: 0.78rem;
             font-weight: 700;
-            color: var(--blue-deep);
-            margin: 32px 0 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--blue-main), var(--blue-royal));
+            padding: 3px 12px;
+            border-radius: 999px;
+            margin-bottom: 8px;
         }
 
-        .subheading::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--blue-main);
-            border-radius: 4px;
+        .section-label::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 0 6px rgba(255,255,255,0.9);
+        }
+
+        h1 {
+            font-size: 1.7rem;
+            line-height: 1.3;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            color: #0D47A1;
         }
 
         .section-text {
-            font-size: 1.08rem;
-            line-height: 1.75;
-            color: #2c3e50;
-            margin-bottom: 24px;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.7;
             text-align: justify;
         }
 
-        /* IMAGE BOX */
-        .image-box {
-            margin: 32px 0;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1.5px solid rgba(25, 118, 210, 0.15);
-            box-shadow: 0 15px 40px rgba(15, 52, 96, 0.1);
-            background: #fff;
-            padding: 12px;
+        .subheading {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0D47A1;
+            margin: 22px 0 10px;
+            padding-left: 10px;
+            border-left: 3px solid rgba(25,118,210,0.75);
         }
 
-        .image-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            display: block;
-        }
-
-        .image-box.image-small img {
-            max-width: 260px;
-            margin: 0 auto;
-        }
-
-        .caption {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: 14px;
-            font-weight: 600;
-            font-style: italic;
-        }
-
-        /* BULLET LIST */
-        .bullet-list {
-            margin: 20px 0 28px 24px;
-            list-style: none;
-        }
-
-        .bullet-list li {
-            position: relative;
-            padding-left: 32px;
-            margin-bottom: 14px;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
-
-        .bullet-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--blue-main);
-            font-weight: 800;
-        }
-
-        /* ITEMS GRID (FOR MATERI 4 & 5) */
+        /* ===== MATERI 4 GRID LAYOUT ===== */
         .items-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 24px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 8px;
         }
 
         .item-card {
-            background: #fff;
-            border-radius: 24px;
-            border: 1.5px solid rgba(25, 118, 210, 0.12);
-            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            flex-direction: row;
+            border: 1.5px solid rgba(25,118,210,0.25);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(13,71,161,0.08);
+            transition: box-shadow 0.2s;
         }
 
         .item-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(25, 118, 210, 0.12);
-            border-color: var(--blue-main);
+            box-shadow: 0 6px 20px rgba(13,71,161,0.16);
         }
 
         .item-img-box {
-            width: 100%;
-            background: #f8faff;
-            padding: 15px;
-            border-bottom: 1.5px solid rgba(25, 118, 210, 0.08);
+            flex: 0 0 110px;
+            width: 110px;
+            background: rgba(187,222,251,0.35);
+            border-right: 1.5px solid rgba(25,118,210,0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 8px 6px 4px;
+            min-height: 120px;
         }
 
         .item-img-box img {
-            max-width: 100%;
-            height: 180px;
+            width: 100%;
+            max-width: 90px;
+            height: 80px;
             object-fit: contain;
-            border-radius: 12px;
+            display: block;
         }
 
         .item-img-caption {
-            margin-top: 10px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
-            font-weight: 600;
             text-align: center;
+            margin-top: 4px;
+            line-height: 1.3;
         }
 
         .item-text-box {
-            padding: 20px 24px;
             flex: 1;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .item-number {
-            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1976D2, #4169E1);
+            color: #fff;
+            font-size: 0.72rem;
             font-weight: 800;
-            color: var(--blue-main);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
+            flex-shrink: 0;
         }
 
         .item-name {
-            font-size: 1.15rem;
+            font-size: 0.88rem;
             font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 10px;
+            color: #0D47A1;
+            margin-bottom: 4px;
+            line-height: 1.3;
         }
 
         .item-desc {
-            font-size: 0.94rem;
-            line-height: 1.6;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: var(--text-main);
+            line-height: 1.55;
             text-align: justify;
         }
 
-        /* MATERI 5 CUSTOM STYLING (VERTICAL) */
         #materi-5 .items-grid .item-card {
             flex-direction: column-reverse;
         }
@@ -344,812 +269,957 @@
             height: auto;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .items-grid { grid-template-columns: 1fr; }
-            .card-inner { padding: 35px 30px; }
-            .content-section h1 { font-size: 2.1rem; }
+        /* Non-grid sections (materi 1-3, 5) */
+        .image-box {
+            margin: 14px 0;
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(187,222,251,0.5);
+            border: 1px solid rgba(25,118,210,0.35);
         }
 
-        @media (max-width: 600px) {
-            .card-inner { padding: 25px 20px; }
-            .tab-btn { padding: 15px 16px; font-size: 0.8rem; }
-            .content-section h1 { font-size: 1.8rem; }
+        .image-box img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .image-box.image-small img {
+            max-width: 260px;
+            margin: 0 auto;
+        }
+
+        .caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 6px 10px 10px;
+        }
+
+        .bullet-list {
+            margin-top: 6px;
+            margin-left: 18px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .bullet-list li + li { margin-top: 4px; }
+
+        .video-grid {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, rgba(25, 118, 210, 0.02), rgba(65, 105, 225, 0.06));
+            border-radius: 20px;
+            border: 1px solid rgba(25, 118, 210, 0.12);
+            padding: 10px 10px 14px;
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(13, 71, 161, 0.25);
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-title {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--blue-deep);
+        }
+
+        .video-note {
+            margin-top: 2px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 680px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+            .video-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 8px 0; }
+            .shell { padding: 0 14px 110px; }
+            .tab-btn { flex: 0 0 auto; font-size: 0.75rem; padding: 7px 12px; }
+            h1 { font-size: 1.35rem; }
+            .item-img-box { flex: 0 0 90px; width: 90px; }
         }
     </style>
 </head>
 <body>
-
-    <nav class="tabs-container">
-        <div class="tabs-wrapper">
-            <button class="tab-btn active" onclick="showTab('materi-1', this)">Materi 1</button>
-            <button class="tab-btn" onclick="showTab('materi-2', this)">Materi 2</button>
-            <button class="tab-btn" onclick="showTab('materi-3', this)">Materi 3</button>
-            <button class="tab-btn" onclick="showTab('materi-4', this)">Materi 4</button>
-            <button class="tab-btn" onclick="showTab('materi-5', this)">Materi 5</button>
-            <button class="tab-btn" onclick="showTab('video-section', this)">Video</button>
-        </div>
-    </nav>
-
-    <main class="content-shell">
-        <div class="card-main">
-            <div class="card-inner">
-
-                <!-- MATERI 1 -->
-                <div class="content-section active" id="materi-1">
-                    <div class="section-label">Materi 1</div>
-                    <h1>Pengertian, Tujuan, dan Ciri Rias Wajah Panggung</h1>
-                    
-                    <div class="subheading">Pengertian Rias Wajah Panggung</div>
-                    <p class="section-text">Tata rias panggung memiliki berbagai keunikan tersendiri yang berbeda dengan jenis riasan lainnya. Keunikan tersebut karena seni rias panggung ini tidak hanya tentang merias wajah yang bagus, tetapi menghadirkan berbagai aturan tradisional di atas panggung menggunakan polesan riasan (Sulasiyah, 2023).</p>
-                    <div class="image-box image-small">
-                        <img src="barugsite/materi/assets/pengertianbaru.png" alt="Contoh rias wajah panggung">
-                        <div class="caption">(Sumber: Direktorat SMK, 2022)</div>
-                    </div>
-                    <p class="section-text">Menurut Dhana, dkk. (2022), rias wajah panggung adalah tata rias wajah yang digunakan untuk keperluan pertunjukan di atas panggung dengan memperhatikan jarak antara penonton dan panggung serta efek dari lampu panggung. Rias wajah panggung memerlukan penekanan pada efek-efek tertentu agar wajah terlihat menonjol dan ekspresif.</p>
-
-                    <div class="subheading">Tujuan Rias Wajah Panggung</div>
-                    <p class="section-text">Tujuan utama dari rias wajah panggung antara lain:</p>
-                    <ul class="bullet-list">
-                        <li>Memperkuat karakter tokoh atau peran yang dibawakan di atas panggung.</li>
-                        <li>Membantu menyampaikan pesan atau tema pertunjukan melalui visual wajah.</li>
-                        <li>Menyeimbangkan efek lampu panggung yang sangat terang agar wajah tidak terlihat pucat atau datar.</li>
-                        <li>Membuat fitur wajah tetap terlihat jelas oleh penonton meski dari jarak jauh.</li>
-                    </ul>
-
-                    <div class="subheading">Ciri-ciri Rias Wajah Panggung</div>
-                    <p class="section-text">Menurut Dhana, dkk. (2022), ciri-ciri rias wajah panggung antara lain:</p>
-                    <ol class="bullet-list" type="a">
-                        <li>Menggunakan warna foundation satu sampai dua tingkat lebih terang dari warna kulit.</li>
-                        <li>Permukaan wajah harus tampak halus, rata, bebas noda dan kerutan.</li>
-                        <li>Mata menjadi pusat perhatian pada rias wajah panggung.</li>
-                        <li>Kreasi dalam mengaplikasikan eyeshadow dan eyeliner.</li>
-                        <li>Bulu mata dapat bervariasi bentuk dan warnanya.</li>
-                        <li>Mengikuti tren yang berlaku atau tema tertentu.</li>
-                    </ol>
-                    <p class="section-text">
-                        Gambar berikut memperlihatkan contoh tampilan rias wajah panggung yang menggambarkan
-                        ciri-ciri menurut Dhana, dkk. (2022).
-                    </p>
-                    <div class="image-box image-small">
-                        <img src="assets/pengertian2baru.png" alt="Ilustrasi rias wajah panggung">
-                        <div class="caption">(Sumber: Tata Kecantikan Kulit dan Rambut, 2022)</div>
-                    </div>
+<main class="shell">
+    <section class="card">
+        <div class="card-inner">
+            <div class="tabs-strip-wrapper">
+                <div class="tabs-strip">
+                    <button class="tab-btn active" onclick="showTab('materi-1', this)">Materi 1</button>
+                    <button class="tab-btn secondary" onclick="showTab('materi-2', this)">Materi 2</button>
+                    <button class="tab-btn secondary" onclick="showTab('materi-3', this)">Materi 3</button>
+                    <button class="tab-btn secondary" onclick="showTab('materi-4', this)">Materi 4</button>
+                    <button class="tab-btn secondary" onclick="showTab('materi-5', this)">Materi 5</button>
+                    <button class="tab-btn secondary" onclick="showTab('video-section', this)">Video</button>
                 </div>
-
-                <!-- MATERI 2 -->
-                <div class="content-section" id="materi-2">
-                    <div class="section-label">Materi 2</div>
-                    <h1>Prinsip Dasar Rias Wajah Panggung</h1>
-                    
-                    <div class="subheading">Jarak Penonton dan Pencahayaan</div>
-                    <p class="section-text">Prinsip utama rias wajah panggung adalah adaptasi terhadap jarak dan cahaya. Karena penonton melihat dari jarak yang cukup jauh (biasanya lebih dari 3-5 meter), detail riasan harus dibuat lebih tegas dan kontras dibanding riasan sehari-hari.</p>
-                    <div class="image-box">
-                        <img src="assets/PrinsipDasarRiasWajahPanggung.jpg" alt="Prinsip dasar rias panggung">
-                        <div class="caption">(Sumber: Sulasiyah, 2023)</div>
-                    </div>
-
-                    <div class="subheading">Poin-poin Penting Prinsip Dasar</div>
-                    <ul class="bullet-list">
-                        <li><strong>Kontras Warna:</strong> Penggunaan warna-warna yang kuat dan berani agar fitur wajah tetap terdefinisi di bawah lampu panggung yang sangat terang.</li>
-                        <li><strong>Garis yang Tegas:</strong> Garis mata (eyeliner), alis, dan bibir harus ditarik dengan tegas untuk membentuk karakter.</li>
-                        <li><strong>Shading dan Tint:</strong> Teknik shading (bayangan) dan tint (penegasan) dilakukan secara lebih ekstrem untuk membentuk dimensi wajah buatan yang terlihat natural dari kejauhan.</li>
-                        <li><strong>Kerapihan:</strong> Meskipun tebal, riasan harus tetap rapi dan halus (smooth) agar tidak terlihat berantakan saat terkena sorotan lampu.</li>
-                    </ul>
-                </div>
-
-                <!-- MATERI 3 -->
-                <div class="content-section" id="materi-3">
-                    <div class="section-label">Materi 3</div>
-                    <h1>Kategori dan Klasifikasi Rias Wajah Panggung</h1>
-                    
-                    <div class="subheading">Kategori Rias Wajah Panggung</div>
-                    <p class="section-text">Berdasarkan tujuannya, rias panggung dibagi menjadi dua kategori besar:</p>
-                    <ul class="bullet-list">
-                        <li><strong>Prosthetic Make Up (Character Make Up):</strong> Riasan yang bertujuan mengubah wajah secara signifikan untuk membentuk karakter tertentu, seperti tokoh teater, hantu, atau karakter fantasi.</li>
-                        <li><strong>Straight Make Up (Rias Korektif Panggung):</strong> Riasan yang bertujuan mempercantik wajah dengan menonjolkan kelebihan dan menyamarkan kekurangan tanpa mengubah wajah menjadi orang lain. Umumnya digunakan untuk peragawati, penyanyi, dan MC.</li>
-                    </ul>
-
-                    <div class="subheading">Klasifikasi Rias Wajah Panggung</div>
-                    <p class="section-text">Menurut Dhana, dkk. (2022), rias wajah panggung dapat diklasifikasikan menjadi:</p>
-                    <ul class="bullet-list">
-                        <li>Rias wajah panggung tradisional, yang ditujukan untuk keperluan penampilan kesenian tradisional, di antaranya digunakan pada penari daerah dan pemain wayang orang.</li>
-                        <li>Rias wajah panggung modern, yaitu rias wajah yang diterapkan untuk kebutuhan panggung yang mengandung unsur terkini atau mengikuti perkembangan zaman dan tren yang berlaku. Rias wajah panggung modern digunakan oleh peragawati atau model, penari modern, penyanyi, dan pembawa acara.</li>
-                    </ul>
-                    <div class="subheading">Contoh Rias Wajah Panggung Modern</div>
-                    <p class="section-text">Sebagai seorang peragawati atau model yang menampilkan busana tren terbaru, tata rias wajah menjadi hal penting. Rias panggung peragawati disesuaikan dengan busana, jarak panggung, dan pencahayaan. Sebelum merias, terlebih dahulu ditentukan desain sesuai tema peragaan busana dan busana yang dikenakan.</p>
-                    <div class="image-box image-small">
-                        <img src="assets/materi3-1.png" alt="Rias wajah peragawati atau model">
-                        <div class="caption">(Sumber: Dhana, dkk., 2022)</div>
-                    </div>
-                    <p class="section-text">Penyanyi juga merupakan pekerja seni yang mempertontonkan keahliannya di atas panggung. Rias wajah penyanyi diaplikasikan untuk mendukung penampilan, harus selaras dengan busana, dan kerap disesuaikan dengan tema konser atau lagu yang dibawakan.</p>
-                    <div class="image-box image-small">
-                        <img src="assets/materi3-2 (1).png" alt="Rias wajah penyanyi di atas panggung">
-                        <div class="caption">(Sumber: Dhana, dkk., 2022)</div>
-                    </div>
-                    <p class="section-text">Penari balet modern dan penari modern lainnya juga menggunakan rias wajah yang mendukung penampilan di panggung. Rias wajah ini diselaraskan dengan kostum dan tema tarian, serta mengikuti perkembangan tren rias wajah modern.</p>
-                    <div class="image-box image-small">
-                        <img src="assets/materi3-3.png" alt="Rias wajah penari balet modern">
-                        <div class="caption">(Sumber: Dhana, dkk., 2022)</div>
-                    </div>
-                </div>
-
-                <!-- MATERI 4 -->
-                <div class="content-section" id="materi-4">
-                    <div class="section-label">Materi 4</div>
-                    <h1>Alat, Bahan, Lenan, dan Kosmetik Rias Wajah Panggung</h1>
-                    
-                    <!-- ALAT -->
-                    <div class="subheading">Alat</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/KuasSet.jpg" alt="Kuas Set">
-                                <div class="item-img-caption">(Sumber: Adisa, V., 2025)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Kuas Set (Brush Set)</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), kuas set merupakan alat utama yang terdiri dari berbagai jenis kuas dengan fungsi berbeda untuk mengaplikasikan berbagai jenis kosmetik pada wajah.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Spon.jpg" alt="Spon">
-                                <div class="item-img-caption">(Sumber: Adisa, V., 2025)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">2</div>
-                                <div class="item-name">Spon (Sponge)</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), spon digunakan untuk mengaplikasikan kosmetik bertekstur cair atau krim seperti foundation dan concealer agar lebih merata dan halus di kulit.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PowderPuff.jpg" alt="Powder Puff">
-                                <div class="item-img-caption">(Sumber: Dewi, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">3</div>
-                                <div class="item-name">Powder Puff</div>
-                                <div class="item-desc">Menurut Dewi (2022), powder puff digunakan khusus untuk mengaplikasikan bedak tabur pada wajah klien dengan cara ditepuk-tepuk lembut.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PenjepitBuluMata.png" alt="Penjepit Bulu Mata">
-                                <div class="item-img-caption">(Sumber: Sulasiyah, 2023)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">4</div>
-                                <div class="item-name">Penjepit Bulu Mata</div>
-                                <div class="item-desc">Menurut Sulasiyah (2023), alat ini berfungsi melentikkan bulu mata asli sebelum atau sesudah mengaplikasikan mascara dan memasang bulu mata palsu.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- BAHAN -->
-                    <div class="subheading">Bahan</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Kapas.jpg" alt="Kapas">
-                                <div class="item-img-caption">(Sumber: Adisa, V., 2025)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Kapas (Cotton)</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), kapas digunakan dalam proses pembersihan wajah untuk mengaplikasikan susu pembersih atau penyegar serta menghapus sisa riasan.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/CottonBud.jpg" alt="Cotton Bud">
-                                <div class="item-img-caption">(Sumber: Adisa, V., 2025)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">2</div>
-                                <div class="item-name">Cotton Bud</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), cotton bud membantu merapikan bagian riasan yang detail dan sulit dijangkau, seperti garis eyeliner atau sisa mascara.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Tissue.jpg" alt="Tisu">
-                                <div class="item-img-caption">(Sumber: Adisa, V., 2025)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">3</div>
-                                <div class="item-name">Tisu (Tissue)</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), tisu digunakan untuk menjaga kebersihan tangan perias, menyerap minyak berlebih, atau alas saat mengaplikasikan bedak.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- LENAN -->
-                    <div class="subheading">Lenan</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/CapeMakeUp.jpg" alt="Cape Make Up">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Cape Make Up</div>
-                                <div class="item-desc">Menurut Direktorat SMK (2022), cape make up digunakan untuk menutupi bahu dan pakaian klien agar tidak terkena debu bedak atau tumpahan kosmetik saat proses rias.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/HairBando.jpg" alt="Hair Bando">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">2</div>
-                                <div class="item-name">Hair Bando / Bandana</div>
-                                <div class="item-desc">Menurut Direktorat SMK (2022), bando digunakan untuk menahan rambut klien agar tidak jatuh ke area wajah saat sedang dirias.</div>
-                            </div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Handuk.jpg" alt="Handuk">
-                                <div class="item-img-caption">(Sumber: Dewi, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">3</div>
-                                <div class="item-name">Handuk (Towel)</div>
-                                <div class="item-desc">Menurut Dewi (2022), handuk berbahan katun yang lembut digunakan untuk melindungi pakaian klien agar tidak terkena sisa kosmetik yang jatuh selama proses rias.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- KOSMETIK -->
-                    <div class="subheading">Kosmetik</div>
-                    <div class="items-grid">
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/MilkCleanser.png" alt="Milk cleanser">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Milk cleanser (Susu pembersih)</div>
-                                <div class="item-desc">Menurut Dhana, dkk. (2022), <em>milk cleanser</em> adalah susu pembersih yang berfungsi membersihkan wajah dari debu dan kotoran serta dapat dipilih sesuai jenis kulit.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Penyegar.jpg" alt="Penyegar">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">2</div>
-                                <div class="item-name">Toner (Penyegar)</div>
-                                <div class="item-desc">Menurut Dewi (2022), penyegar merupakan langkah kedua dalam pembersihan wajah yang berfungsi mengurangi kadar minyak berlebih sehingga menyegarkan wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Pelembab.png" alt="Pelembab">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">3</div>
-                                <div class="item-name">Moisturizer (Pelembab)</div>
-                                <div class="item-desc">Menurut Sulasiyah (2023), pelembab berfungsi menjaga kelembaban dan kandungan air pada lapisan kulit wajah terluar klien.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Primer.png" alt="Primer">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">4</div>
-                                <div class="item-name">Primer</div>
-                                <div class="item-desc">Menurut Sulasiyah (2023), <em>primer</em> adalah kosmetik rias wajah yang berfungsi menyamarkan pori-pori, menghaluskan kulit, dan membantu menahan minyak berlebih.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Concealer.png" alt="Concealer">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">5</div>
-                                <div class="item-name">Concealer</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), <em>concealer</em> digunakan untuk membantu <em>foundation</em> dalam menutupi kekurangan wajah yang tidak tertutup sempurna hanya dengan <em>foundation</em>.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Contourset.png" alt="Contour set">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">6</div>
-                                <div class="item-name">Contour Cream (kontur krim)</div>
-                                <div class="item-desc">Menurut Dhana, dkk. (2022), <em>contour set</em> adalah produk make up yang digunakan untuk membentuk dimensi wajah and memberi kesan wajah lebih tirus atau mendekati bentuk ideal oval.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/CreamBlushOn.png" alt="Cream blush on">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">7</div>
-                                <div class="item-name">Cream Blush On (Perona Pipi)</div>
-                                <div class="item-desc">Menurut Dewi (2022), <em>cream blush on</em> digunakan setelah <em>foundation</em> dengan tekstur creamy untuk memberikan kesan segar pada wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Foundation.png" alt="Foundation">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">8</div>
-                                <div class="item-name">Foundation (Alas Bedak)</div>
-                                <div class="item-desc">Menurut Sulasiyah (2023), <em>foundation</em> adalah alas bedak yang berfungsi sebagai dasar sebelum pengaplikasian bedak untuk meratakan atau bahkan mengubah warna kulit wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Bedaktabur.png" alt="Bedak tabur">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">9</div>
-                                <div class="item-name">Loose Powder (Bedak Tabur)</div>
-                                <div class="item-desc">Menurut Dewi (2022), bedak tabur memiliki tekstur berupa butiran halus. Pengaplikasiannya pada wajah menggunakan puff bedak tabur atau kuas besar.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/BedakPadat.png" alt="Bedak padat">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">10</div>
-                                <div class="item-name">Compact Powder (Bedak Padat)</div>
-                                <div class="item-desc">Menurut Anaputri (2022), bedak padat merupakan bedak yang dikemas dalam bentuk padat and penggunaannya dapat menggunakan spons bedak padat ataupun kuas besar.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Eyeshadow.png" alt="Eyeshadow">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">11</div>
-                                <div class="item-name">Eyeshadow (Perona Mata)</div>
-                                <div class="item-desc">Menurut Dhana, dkk. (2022), <em>eyeshadow</em> berfungsi memberikan warna atau bayangan pada kelopak mata and sekitarnya sehingga mata tampak lebih hidup and indah sesuai warna yang digunakan.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Eyeliner.png" alt="Eyeliner">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">12</div>
-                                <div class="item-name">Eyeliner (Sipat Mata)</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), <em>eyeliner</em> dapat berbentuk cair, krim/gel, maupun pensil and berfungsi memberi definisi serta mempertegas garis mata agar mata tampak lebih hidup.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Lembulumata.png" alt="Lem bulu mata">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">13</div>
-                                <div class="item-name">Lem bulu mata palsu</div>
-                                <div class="item-desc">Menurut Sulasiyah (2023), lem bulu mata berfungsi untuk menempelkan bulu mata palsu pada kelopak mata.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Highlighter.png" alt="Highlighter">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">14</div>
-                                <div class="item-name">Highlighter (Penyorot wajah)</div>
-                                <div class="item-desc">Menurut Adisa, V. (2025), <em>highlighter</em> berfungsi memberikan efek mengkilap pada bagian tertentu wajah sehingga tampak lebih menonjol.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Mascara.png" alt="Mascara">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">15</div>
-                                <div class="item-name">Mascara (maskara)</div>
-                                <div class="item-desc">Menurut Dhana, dkk. (2022), <em>mascara</em> berfungsi untuk menebalkan, melentikkan, and membuat bulu mata kelihatan lebih panjang.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Pensilalis.png" alt="Pensil alis">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">16</div>
-                                <div class="item-name">Eyebrow Pencil (pensil alis)</div>
-                                <div class="item-desc">Menurut Dewi (2022), pensil alis dapat digunakan para pemula karena lebih mudah digunakan untuk membentuk alis and mengisi bagian-bagian alis yang kosong. Fungsi lainnya adalah menebalkan warna alis serta menegaskan garis di pinggir alis.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Blushonpowder.png" alt="Blush on powder">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">17</div>
-                                <div class="item-name">Blush on powder (perona pipi bubuk)</div>
-                                <div class="item-desc">Menurut Sulasiyah (2023), <em>blush on powder</em> adalah kosmetik yang umumnya digunakan untuk memerahkan pipi sehingga memberikan penampilan yang lebih muda and menegaskan bentuk tulang pipi agar tampak lebih jelas and meronakan pipi.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Contourpowder.png" alt="Contour powder">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">18</div>
-                                <div class="item-name">Contour Powder (Kontur bubuk)</div>
-                                <div class="item-desc">Menurut Dewi (2022), <em>contour powder</em> digunakan untuk membuat muka tampak lebih terstruktur and tirus. <em>Contour</em> juga dapat digunakan untuk menonjolkan berbagai fitur wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Lipstick.png" alt="Lipstick">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">19</div>
-                                <div class="item-name">Lipstick (perona bibir)</div>
-                                <div class="item-desc">Menurut Dhana, dkk. (2022), produk ini berfungsi memberikan warna pada bibir sehingga menimbulkan kesan tertentu sesuai dengan warna yang digunakan.</div>
-                            </div>
-                        </div>
-
-                    </div><!-- end kosmetik grid -->
-                </div><!-- end materi-4 -->
-
-                <!-- MATERI 5 -->
-                <div class="content-section" id="materi-5">
-                    <div class="section-label">Materi 5</div>
-                    <h1>Prosedur Pelaksanaan Rias Wajah Panggung untuk Peragawati</h1>
-
-                    <!-- a) PERSIAPAN -->
-                    <div class="subheading">a) Persiapan</div>
-                    <div class="items-grid">
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Persiapan_pribadi_baru.jpeg" alt="Persiapan pribadi perias">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Persiapan Pribadi</div>
-                                <div class="item-desc">Melakukan persiapan pribadi sebagai seorang perias (beautician) seperti memakai pakaian kerja (jas lab) yang rapi and bersih, merapikan and menata rambut, memakai riasan yang natural, melepaskan perhiasan yang mengganggu, and melakukan sanitasi tangan sebelum mulai merias.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PersiapanAreaKerja.jpg" alt="Persiapan area kerja">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">2</div>
-                                <div class="item-name">Persiapan Area Kerja</div>
-                                <div class="item-desc">Menata area kerja dengan rapi, memastikan pencahayaan cukup, serta membersihkan meja and kursi kerja sebelum digunakan.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PersiapanAlatBahanKosmetik.jpg" alt="Persiapan alat bahan kosmetik">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">3</div>
-                                <div class="item-name">Persiapan Alat, Bahan, and Kosmetik</div>
-                                <div class="item-desc">Menyusun alat, bahan, lenan, and kosmetik yang diperlukan di atas meja kerja sesuai urutan pemakaian agar memudahkan proses merias.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PersiapanModelKlien.jpg" alt="Persiapan model klien">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">4</div>
-                                <div class="item-name">Persiapan Model/Klien</div>
-                                <div class="item-desc">Membantu melepaskan perhiasan yang mengganggu, membantu model mengenakan cape make up agar baju tidak kotor saat dirias, serta memakaikan hair bando.</div>
-                            </div>
-                        </div>
-
-                    </div><!-- end persiapan grid -->
-
-                    <!-- b) PELAKSANAAN -->
-                    <div class="subheading">b) Pelaksanaan</div>
-                    <div class="items-grid">
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-1.jpeg" alt="Pembersihan dan penyegaran">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Pembersihan dan Penyegaran</div>
-                                <div class="item-desc">Membersihkan wajah klien menggunakan <em>milk cleanser</em> and face tonic yang sesuai jenis kulit untuk mengangkat kotoran and menyegarkan kulit.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/MendiagnosaKulitWajah.jpg" alt="Mendiagnosa kondisi kulit wajah">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">2</div>
-                                <div class="item-name">Mendiagnosa Kondisi Kulit Wajah</div>
-                                <div class="item-desc">Tahap ini bertujuan mengetahui kondisi wajah secara keseluruhan sehingga pemilihan kosmetik, warna, and teknik koreksi dapat disesuaikan dengan kebutuhan.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-3.jpeg" alt="Pelembab dan primer">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">3</div>
-                                <div class="item-name">Mengaplikasikan Pelembab dan Primer</div>
-                                <div class="item-desc">Mengaplikasikan pelembab and <em>primer</em> sesuai jenis kulit. Pelembab and <em>primer</em> berfungsi mempertahankan kelembaban kulit and membuat make up lebih tahan lama.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-4.jpeg" alt="Pengaplikasian foundation">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">4</div>
-                                <div class="item-name">Mengaplikasikan Foundation</div>
-                                <div class="item-desc">Mengoleskan <em>foundation</em> atau alas bedak menggunakan kuas atau <em>beauty blender</em>. Hindari penggunaan yang berlebihan atau terlalu tebal. <em>Foundation</em> yang digunakan satu tingkat lebih cerah atau sama dengan warna asli kulit wajah klien.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-5.jpeg" alt="Shading dan tint">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">5</div>
-                                <div class="item-name">Koreksi Wajah dengan Shading dan Tint</div>
-                                <div class="item-desc">Bagian yang perlu dikoreksi diberi shading dalam, sedangkan bagian yang sempurna ditegaskan dengan <em>tint</em>. Noda bekas jerawat ditutup dengan <em>tint</em> atau <em>foundation</em> yang berwarna lebih terang agar tampak rata and tertutup.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-6.jpeg" alt="Bedak tabur">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">6</div>
-                                <div class="item-name">Mengaplikasikan Bedak Tabur</div>
-                                <div class="item-desc">Membubuhkan bedak tabur menggunakan puff bedak tabur atau kuas besar hingga merata. Warna bedak dipilih satu tingkat lebih terang dari warna kulit.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-7.jpeg" alt="Bedak padat">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">7</div>
-                                <div class="item-name">Mengaplikasikan Bedak Padat</div>
-                                <div class="item-desc">Menggunakan bedak padat untuk mengunci minyak and memberi kesan halus pada wajah. Ratakan bedak padat secara merata pada seluruh wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-8.jpeg" alt="Shading luar">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">8</div>
-                                <div class="item-name">Mengaplikasikan Shading Luar</div>
-                                <div class="item-desc">Mengaplikasikan shading luar menggunakan shading berbentuk press powder untuk menegaskan bentuk wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-9.jpeg" alt="Eyeshadow">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">9</div>
-                                <div class="item-name">Mengaplikasikan Eyeshadow</div>
-                                <div class="item-desc">Mengaplikasikan <em>eyeshadow</em> atau perona mata sesuai busana and kesempatan yang akan dihadiri sehingga tampilan mata serasi dengan keseluruhan penampilan.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-10.jpeg" alt="Eyeliner">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">10</div>
-                                <div class="item-name">Mengaplikasikan Eyeliner</div>
-                                <div class="item-desc">Mengaplikasikan <em>eyeliner</em> pada garis mata atas and bawah untuk mempertegas garis mata sehingga mata tampak lebih hidup.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <div style="display: flex; gap: 5px; width: 100%;">
-                                    <img src="assets/PELAKSANAAN-11-1.jpeg" alt="Bulu mata palsu 1" style="width: 48%; height: auto;">
-                                    <img src="assets/PELAKSANAAN-11-2.jpeg" alt="Bulu mata palsu 2" style="width: 48%; height: auto;">
-                                </div>
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">11</div>
-                                <div class="item-name">Memasang Bulu Mata Palsu &amp; Mascara</div>
-                                <div class="item-desc">Memasang bulu mata palsu and mengaplikasikan <em>mascara</em> untuk memberikan tampilan mata yang lebih hidup sekaligus menutupi kekurangan pada area sekitar mata.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-12.jpeg" alt="Membentuk alis">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">12</div>
-                                <div class="item-name">Membentuk Alis</div>
-                                <div class="item-desc">Alis disikat agar rapi, kemudian dibingkai and diisi dengan pensil alis atau <em>eyebrow gel</em>. Rapikan dengan <em>concealer</em>. Jika bulu alis kurang tebal, dapat ditambah <em>mascara</em> tipis di atas bulu alis.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-13.jpeg" alt="Blush on">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">13</div>
-                                <div class="item-name">Mengaplikasikan Blush On</div>
-                                <div class="item-desc">Mengaplikasikan <em>blush on</em> atau perona pipi pada tulang pipi menggunakan kuas dengan warna senada. Hindari sapuan terlalu ke bawah. Arah usap ke samping luar menyatu dengan garis rambut di pelipis.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-14.jpeg" alt="Lipstick">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">14</div>
-                                <div class="item-name">Mengaplikasikan Lipstick</div>
-                                <div class="item-desc">Membentuk bibir dengan <em>lip liner</em>, melakukan koreksi jika diperlukan, lalu mengaplikasikan <em>lipstick</em> and <em>lip gloss</em> untuk memberikan tampilan bibir yang segar.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/PELAKSANAAN-15.jpeg" alt="Highlighter">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">15</div>
-                                <div class="item-name">Mengaplikasikan Highlighter</div>
-                                <div class="item-desc">Mengaplikasikan <em>highlighter</em> pada bagian menonjol seperti tulang pipi, sekitar hidung, tulang alis, dahi, and dagu sesuai koreksi bentuk wajah.</div>
-                            </div>
-                        </div>
-
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/HasilAkhirRiasWajahPanggungPeragawatiModelcatwalkbaru.png" alt="Hasil akhir rias wajah panggung">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">16</div>
-                                <div class="item-name">Memeriksa Hasil Akhir Riasan</div>
-                                <div class="item-desc">Memastikan seluruh bagian riasan sudah rapi, simetris, and sesuai dengan desain yang direncanakan. Lakukan perbaikan (touch-up) jika ada bagian yang kurang sempurna.</div>
-                            </div>
-                        </div>
-
-                    </div><!-- end pelaksanaan grid -->
-
-                    <!-- c) BERKEMAS -->
-                    <div class="subheading">c) Berkemas</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-img-box">
-                                <img src="assets/Berkemas.jpg" alt="Berkemas">
-                                <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
-                            </div>
-                            <div class="item-text-box">
-                                <div class="item-number">1</div>
-                                <div class="item-name">Membersihkan Area Kerja</div>
-                                <div class="item-desc">Setelah proses rias selesai, bersihkan kembali area kerja, cuci alat yang telah digunakan, and simpan kembali kosmetik ke tempat semula agar tetap higienis and rapi.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- end materi-5 -->
-
-                <!-- VIDEO SECTION -->
-                <div class="content-section" id="video-section">
-                    <div class="section-label">Video</div>
-                    <h1>Video Pembelajaran Rias Wajah Panggung</h1>
-                    <p class="section-text">Tonton video tutorial berikut untuk memahami lebih dalam teknik-teknik rias wajah panggung yang telah dipelajari.</p>
-                    <div class="image-box">
-                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px;">
-                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <div class="caption">Video Tutorial Rias Wajah Panggung (Contoh)</div>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- MATERI 1 -->
+            <div class="content-section active-section" id="materi-1">
+                <div class="section-label">Materi 1</div>
+                <h1>Pengertian Rias Wajah Panggung</h1>
+                <div class="image-box image-small">
+                    <img src="barugsite/materi/assets/pengertianbaru.png" alt="Contoh rias wajah panggung">
+                    <div class="caption">(Sumber: Direktorat SMK, 2022)</div>
+                </div>
+                <p class="section-text">Rias wajah panggung adalah riasan yang digunakan untuk pertunjukan di atas panggung dengan penekanan pada efek tertentu pada bagian wajah seperti mata, hidung, alis, dan bibir agar wajah tampak lebih menonjol sesuai dengan tujuan pertunjukan.</p>
+                <p class="section-text">Menurut Sulasiyah (2023), rias wajah panggung merupakan jenis riasan wajah yang digunakan dalam pertunjukan atau pementasan di atas panggung sesuai tujuan dari pertunjukan tersebut sebelum tampil di atas panggung.</p>
+                <p class="section-text">Menurut Dhana, dkk. (2022), rias wajah panggung memiliki arti rias wajah yang memiliki tekanan pada efek-efek tertentu seperti pada mata, hidung, alis, dan bibir agar perhatian secara khusus tertuju pada wajah, yang digunakan untuk kesempatan pementasan atau pertunjukan di atas panggung sesuai dengan tujuan pertunjukan tersebut.</p>
+                <p class="section-text">Menurut Sulistyorini (2022), rias wajah panggung adalah rias wajah malam dengan tekanan pada efek-efek tertentu agar perhatian secara khusus tertuju kepada wajah, digunakan untuk kesempatan pementasan atau pertunjukan di atas panggung sesuai dengan tujuan pertunjukan tersebut.</p>
+                <div class="subheading">Tujuan Rias Wajah Panggung</div>
+                <p class="section-text">Tujuan merias wajah panggung adalah untuk memenuhi kebutuhan serta ketentuan watak tokoh, karakter, peran, dan tema tertentu berdasarkan konsep tujuan pementasan (Sulistyorini, 2022).</p>
+                <p class="section-text">Menurut Nurlaili (2022), tujuan rias wajah panggung yaitu agar wajah terlihat indah dan sempurna sesuai dengan tema yang diinginkan, selain itu tata rias wajah panggung juga mempunyai tujuan sebagai tata rias korektif.</p>
+                <p class="section-text">Menurut Dhana, dkk. (2022), tata rias wajah panggung memiliki tujuan untuk memberikan sentuhan rias wajah yang membantu seseorang dalam menunjang penampilannya di atas pentas atau panggung. Rias wajah panggung harus memiliki unsur yang tegas dan mencolok karena ditujukan untuk dilihat dari jarak yang cukup jauh.</p>
+                <div class="subheading">Ciri-ciri Rias Wajah Panggung</div>
+                <p class="section-text">Tata rias panggung memiliki berbagai keunikan tersendiri yang berbeda dengan jenis riasan lainnya. Keunikan tersebut karena seni rias panggung ini tidak hanya tentang merias wajah yang bagus, tetapi menghadirkan berbagai aturan tradisional di atas panggung menggunakan polesan riasan (Sulasiyah, 2023).</p>
+                <p class="section-text">Menurut Dhana, dkk. (2022), ciri-ciri rias wajah panggung antara lain:</p>
+                <ol class="bullet-list" type="a">
+                    <li>Menggunakan warna foundation satu sampai dua tingkat lebih terang dari warna kulit.</li>
+                    <li>Permukaan wajah harus tampak halus, rata, bebas noda dan kerutan.</li>
+                    <li>Mata menjadi pusat perhatian pada rias wajah panggung.</li>
+                    <li>Kreasi dalam mengaplikasikan eyeshadow dan eyeliner.</li>
+                    <li>Bulu mata dapat bervariasi bentuk dan warnanya.</li>
+                    <li>Mengikuti tren yang berlaku atau tema tertentu.</li>
+                </ol>
+                <p class="section-text">
+                    Gambar berikut memperlihatkan contoh tampilan rias wajah panggung yang menggambarkan
+                    ciri-ciri menurut Dhana, dkk. (2022).
+                </p>
+                <div class="image-box image-small">
+                    <img src="assets/pengertian2baru.png" alt="Ilustrasi rias wajah panggung">
+                    <div class="caption">(Sumber: Tata Kecantikan Kulit dan Rambut, 2022)</div>
+                </div>
+            </div>
+
+            <!-- MATERI 2 -->
+            <div class="content-section" id="materi-2">
+                <div class="section-label">Materi 2</div>
+                <h1>Prinsip Dasar Rias Wajah Panggung</h1>
+                <div class="subheading">Menurut Maida (2024)</div>
+                <p class="section-text">Menurut Maida (2024), rias wajah panggung memiliki prinsip dasar yang harus diperhatikan sebagai berikut:</p>
+                <ul class="bullet-list">
+                    <li>Jarak panggung dengan penonton sangat berpengaruh dalam menentukan ketebalan riasan wajah. Jarak panggung dengan penonton yang semakin dekat, maka semakin halus hasil riasannya.</li>
+                    <li>Lampu atau lighting yang digunakan untuk penerangan panggung.</li>
+                    <li>Cahaya merupakan bagian penting dalam pertunjukan.</li>
+                    <li>Media yang digunakan untuk pertunjukan.</li>
+                    <li>Warna kosmetik yang digunakan tergolong pada warna-warna kontras yang menarik perhatian.</li>
+                    <li>Penekanan dengan efek tertentu seperti pada mata, alis, hidung dan bibir agar perhatian penonton dapat tertuju secara khusus pada wajah pelaku panggung.</li>
+                </ul>
+                <div class="subheading">Menurut Dhana, dkk. (2022)</div>
+                <p class="section-text">Menurut Dhana, dkk. (2022), rias wajah panggung memiliki prinsip dasar yang harus diperhatikan sebagai berikut:</p>
+                <ul class="bullet-list">
+                    <li>Jarak antara panggung dengan penonton. Jarak ini akan sangat berpengaruh dalam menentukan ketebalan rias wajah. Semakin jauh jarak panggung dengan penonton maka tata rias yang diaplikasikan harus semakin tegas. Sebaliknya, jika panggung berada pada posisi yang berdekatan dengan penonton maka rias wajah harus lembut dan halus.</li>
+                    <li>Tata cahaya panggung. Semakin kuat dan banyak cahaya yang digunakan maka garis-garis wajah harus semakin tegas, agar tidak kalah atau tersamarkan karena pantulan cahaya yang kuat.</li>
+                    <li>Media pertunjukan. Media pertunjukan dapat berupa pentas terbuka (outdoor) dan pentas tertutup (indoor). Pertunjukan pada pentas terbuka pada siang hari tidak terlalu memerlukan tata cahaya sehingga rias wajah yang diaplikasikan tidak perlu tebal. Sebaliknya, jika pertunjukan berlangsung di dalam ruangan dengan tata cahaya yang kuat, maka rias wajah harus lebih tebal dan tegas.</li>
+                    <li>Warna kosmetik yang digunakan. Warna yang digunakan adalah warna-warna kontras yang menarik perhatian, namun tidak menutup kemungkinan menggunakan warna-warna netral sesuai kebutuhan peran atau konsep tertentu.</li>
+                    <li>Contouring. Shade dan tint pada rias wajah panggung harus lebih tegas dibandingkan rias korektif biasa. Penekanan dengan efek tertentu pada mata, alis, hidung, pipi dan bibir harus diperhatikan agar perhatian penonton dapat tertuju secara khusus pada wajah pelaku panggung. Contouring akan membentuk relief wajah yang jelas saat terkena sorotan lampu.</li>
+                </ul>
+            </div>
+
+            <!-- MATERI 3 -->
+            <div class="content-section" id="materi-3">
+                <div class="section-label">Materi 3</div>
+                <h1>Kategori dan Klasifikasi Rias Wajah Panggung</h1>
+                <div class="subheading">Kategori Rias Wajah Panggung</div>
+                <p class="section-text">Menurut Sulasiyah (2023), kategori rias wajah panggung pada dasarnya terbagi menjadi dua:</p>
+                <ul class="bullet-list">
+                    <li><em>Prosthetic</em>. Prosthetic merupakan teknik tata rias yang digunakan dalam meniru karakter-karakter tertentu. <em>Prosthetic</em> atau <em>character make up</em> adalah teknik tata rias yang melibatkan perubahan pada wajah, seperti koreksi, destruksi, dan penambahan. Penambahan tersebut dapat berupa kumis, jenggot, bentuk mata, alis, dan hidung untuk menciptakan karakter yang diinginkan. Teknik ini umumnya digunakan oleh para pemain teater, sandiwara, penari tradisional, dan wayang orang untuk menciptakan karakter sesuai peran yang dimainkan.</li>
+                    <li><em>Straight make up</em>. <em>Straight make up</em> atau tata rias korektif adalah teknik tata rias untuk menonjolkan bagian-bagian wajah yang sempurna dan menyamarkan kekurangan tanpa menciptakan efek dramatis. Tujuan utama make up ini adalah meningkatkan penampilan wajah artis panggung, seperti peragawati, penyanyi, penari, model, maupun pembawa acara. Teknik ini banyak digunakan pada acara formal seperti pernikahan, acara malam, atau acara resmi lainnya.</li>
+                </ul>
+                <div class="subheading">Klasifikasi Rias Wajah Panggung</div>
+                <p class="section-text">Menurut Dhana, dkk. (2022), rias wajah panggung dapat diklasifikasikan menjadi:</p>
+                <ul class="bullet-list">
+                    <li>Rias wajah panggung tradisional, yang ditujukan untuk keperluan penampilan kesenian tradisional, di antaranya digunakan pada penari daerah dan pemain wayang orang.</li>
+                    <li>Rias wajah panggung modern, yaitu rias wajah yang diterapkan untuk kebutuhan panggung yang mengandung unsur terkini atau mengikuti perkembangan zaman dan tren yang berlaku. Rias wajah panggung modern digunakan oleh peragawati atau model, penari modern, penyanyi, dan pembawa acara.</li>
+                </ul>
+                <div class="subheading">Contoh Rias Wajah Panggung Modern</div>
+                <p class="section-text">Sebagai seorang peragawati atau model yang menampilkan busana tren terbaru, tata rias wajah menjadi hal penting. Rias panggung peragawati disesuaikan dengan busana, jarak panggung, dan pencahayaan. Sebelum merias, terlebih dahulu ditentukan desain sesuai tema peragaan busana dan busana yang dikenakan.</p>
+                <div class="image-box image-small">
+                    <img src="assets/materi3-1.png" alt="Rias wajah peragawati atau model">
+                    <div class="caption">(Sumber: Dhana, dkk., 2022)</div>
+                </div>
+                <p class="section-text">Penyanyi juga merupakan pekerja seni yang mempertontonkan keahliannya di atas panggung. Rias wajah penyanyi diaplikasikan untuk mendukung penampilan, harus selaras dengan busana, dan kerap disesuaikan dengan tema konser atau lagu yang dibawakan.</p>
+                <div class="image-box image-small">
+                    <img src="assets/materi3-2 (1).png" alt="Rias wajah penyanyi di atas panggung">
+                    <div class="caption">(Sumber: Dhana, dkk., 2022)</div>
+                </div>
+                <p class="section-text">Penari balet modern dan penari modern lainnya juga menggunakan rias wajah yang mendukung penampilan di panggung. Rias wajah ini diselaraskan dengan kostum dan tema tarian, serta mengikuti perkembangan tren rias wajah modern.</p>
+                <div class="image-box image-small">
+                    <img src="assets/materi3-3.png" alt="Rias wajah penari balet modern">
+                    <div class="caption">(Sumber: Dhana, dkk., 2022)</div>
+                </div>
+            </div>
+
+            <!-- MATERI 4 ΓÇö GRID LAYOUT -->
+            <div class="content-section" id="materi-4">
+                <div class="section-label">Materi 4</div>
+                <h1>Alat, Bahan, Lenan, dan Kosmetik</h1>
+
+                <!-- ALAT -->
+                <div class="subheading">Alat</div>
+                <div class="items-grid">
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/kuas set.png" alt="Kuas set">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Kuas set (perangkat kuas)</div>
+                            <div class="item-desc">Menurut Adisa, V. (2025), kuas set terdiri atas berbagai macam bentuk and ukuran dengan berbagai fungsi seperti untuk pengaplikasian bedak, <em>eyeshadow</em>, <em>blush on</em>, and shading pada wajah secara higienis tanpa mengotori jari sehingga membantu menciptakan riasan wajah yang sempurna.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/palletestainless.png" alt="Palet stainless">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">2</div>
+                            <div class="item-name">Palet stainless (wadah pencampur)</div>
+                            <div class="item-desc">Erina dan Puspitorini (2022) menjelaskan bahwa palet stainless adalah alat berbahan stainless yang berfungsi sebagai tempat mencampur <em>foundation</em> untuk menghasilkan warna yang sesuai dengan kulit wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/BeautyBlender.png" alt="Beauty blender">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">3</div>
+                            <div class="item-name">Beauty blender (spons rias)</div>
+                            <div class="item-desc">Menurut Fauzani, dkk. (2025), <em>beauty blender</em> atau sponge make up adalah aplikator dari bahan latex yang digunakan untuk mengaplikasikan and meratakan <em>foundation</em>, <em>blush on cream</em>, <em>contour cream</em>, and <em>concealer</em>.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/powderpuff.jpg" alt="Powder puff">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">4</div>
+                            <div class="item-name">Powder puff (spons bedak tabur)</div>
+                            <div class="item-desc">Menurut Dhana, dkk. (2022), <em>powder puff</em> terbuat dari bahan flanel lembut and berfungsi mengaplikasikan bedak tabur pada wajah. <em>Powder puff</em> biasanya tersedia dalam kemasan bedak tabur and memiliki celah untuk jari agar tangan perias tidak menyentuh wajah klien saat proses make up.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/sponsbedakpadat.png" alt="Spons bedak padat">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">5</div>
+                            <div class="item-name">Spons bedak padat (spons bedak padat)</div>
+                            <div class="item-desc">Menurut Dewi (2022), spons bedak padat umumnya terdapat dalam kemasan bedak padat dengan bentuk persegi atau lingkaran and digunakan untuk mengaplikasikan bedak padat pada wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Penjepitbulumata.jpg" alt="Penjepit bulu mata">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">6</div>
+                            <div class="item-name">Eyelash curler (penjepit bulu mata)</div>
+                            <div class="item-desc">Menurut Fauzani, dkk. (2025), penjepit bulu mata digunakan untuk melentikkan and membentuk lengkung bulu mata agar tampilan mata lebih hidup.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/pinset.png" alt="Pinset">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">7</div>
+                            <div class="item-name">Pinset (penjepit bulu mata palsu)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), pinset berbahan stainless digunakan untuk menjepit and memasang bulu mata palsu pada saat penempelan.</div>
+                        </div>
+                    </div>
+
+                </div><!-- end alat grid -->
+
+                <!-- BAHAN -->
+                <div class="subheading">Bahan</div>
+                <div class="items-grid">
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Kapas.jpg" alt="Kapas">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Cotton (kapas)</div>
+                            <div class="item-desc">Menurut Fauzani, dkk. (2025), kapas terbuat dari serat kapas and digunakan untuk mengaplikasikan pembersih wajah seperti milk cleanser, penyegar, and produk sejenis.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Tissue.jpg" alt="Tisu">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">2</div>
+                            <div class="item-name">Tissue (tisu)</div>
+                            <div class="item-desc">Menurut Adisa, V. (2025), tisu digunakan untuk membersihkan wajah klien dari sisa kotoran sebelum merias serta untuk menghapus make up pada kulit wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Cottonbud.jpg" alt="Cotton bud">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">3</div>
+                            <div class="item-name">Cotton bud (kapas korek kuping)</div>
+                            <div class="item-desc">Menurut Dewi (2022), <em>cotton bud</em> yang lembut and fleksibel digunakan untuk merapikan and menghapus detail make up yang berantakan, misalnya pada alis and riasan mata.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Bulumatapalsu.jpg" alt="Bulu mata palsu">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">4</div>
+                            <div class="item-name">Fake eyelashes (bulu mata palsu)</div>
+                            <div class="item-desc">Menurut Dewi (2022), bulu mata palsu atas and bawah berfungsi untuk memberi kesan mata lebih besar, terbuka, and tajam serta menambah keindahan riasan mata and membuat bulu mata asli tampak lebih tebal.</div>
+                        </div>
+                    </div>
+
+                </div><!-- end bahan grid -->
+
+                <!-- LENAN -->
+                <div class="subheading">Lenan</div>
+                <div class="items-grid">
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Capemakeup.jpg" alt="Cape make up">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Make up cape (baju pelindung rias)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), <em>cape make up</em> adalah lenan dari bahan satin yang digunakan untuk menutupi and melindungi baju klien agar tidak kotor oleh make up yang berjatuhan.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/HairBando.png" alt="Hair bando">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">2</div>
+                            <div class="item-name">Hair bando (ikat kepala)</div>
+                            <div class="item-desc">Menurut Adisa, V. (2025), <em>hair bando</em> adalah penutup kepala berbahan katun yang digunakan untuk merapikan rambut di sekitar hairline selama proses rias and melindungi wajah dari rambut.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Handuk.png" alt="Handuk">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">3</div>
+                            <div class="item-name">Towel (handuk)</div>
+                            <div class="item-desc">Menurut Dewi (2022), handuk berbahan katun yang lembut digunakan untuk melindungi pakaian klien agar tidak terkena sisa kosmetik yang jatuh selama proses rias.</div>
+                        </div>
+                    </div>
+
+                </div><!-- end lenan grid -->
+
+                <!-- KOSMETIK -->
+                <div class="subheading">Kosmetik</div>
+                <div class="items-grid">
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/MilkCleanser.png" alt="Milk cleanser">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Milk cleanser (susu pembersih)</div>
+                            <div class="item-desc">Menurut Dhana, dkk. (2022), <em>milk cleanser</em> adalah susu pembersih yang berfungsi membersihkan wajah dari debu and kotoran serta dapat dipilih sesuai jenis kulit.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Penyegar.jpg" alt="Penyegar">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">2</div>
+                            <div class="item-name">Toner (penyegar)</div>
+                            <div class="item-desc">Menurut Dewi (2022), penyegar merupakan langkah kedua dalam pembersihan wajah yang berfungsi mengurangi kadar minyak berlebih sehingga menyegarkan wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Pelembab.png" alt="Pelembab">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">3</div>
+                            <div class="item-name">Moisturizer (pelembab)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), pelembab berfungsi menjaga kelembaban and kandungan air pada lapisan kulit wajah terluar klien.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Primer.png" alt="Primer">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">4</div>
+                            <div class="item-name">Primer (dasar rias)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), <em>primer</em> adalah kosmetik rias wajah yang berfungsi menyamarkan pori-pori, menghaluskan kulit, and membantu menahan minyak berlebih.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Concealer.png" alt="Concealer">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">5</div>
+                            <div class="item-name">Concealer (penyamar noda)</div>
+                            <div class="item-desc">Menurut Adisa, V. (2025), <em>concealer</em> digunakan untuk membantu <em>foundation</em> dalam menutupi kekurangan wajah yang tidak tertutup sempurna hanya dengan <em>foundation</em>.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Contourset.png" alt="Contour set">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">6</div>
+                            <div class="item-name">Contour set (perangkat kontur)</div>
+                            <div class="item-desc">Menurut Dhana, dkk. (2022), <em>contour set</em> adalah produk make up yang digunakan untuk membentuk dimensi wajah and memberi kesan wajah lebih tirus atau mendekati bentuk ideal oval.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/CreamBlushOn.png" alt="Cream blush on">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">7</div>
+                            <div class="item-name">Cream blush on (perona pipi krim)</div>
+                            <div class="item-desc">Menurut Dewi (2022), <em>cream blush on</em> digunakan setelah <em>foundation</em> dengan tekstur creamy untuk memberikan kesan segar pada wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Foundation.png" alt="Foundation">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">8</div>
+                            <div class="item-name">Foundation (alas bedak)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), <em>foundation</em> adalah alas bedak yang berfungsi sebagai dasar sebelum pengaplikasian bedak untuk meratakan atau bahkan mengubah warna kulit wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Bedaktabur.png" alt="Bedak tabur">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">9</div>
+                            <div class="item-name">Loose powder (bedak tabur)</div>
+                            <div class="item-desc">Menurut Dewi (2022), bedak tabur memiliki tekstur berupa butiran halus. Pengaplikasiannya pada wajah menggunakan puff bedak tabur atau kuas besar.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/BedakPadat.png" alt="Bedak padat">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">10</div>
+                            <div class="item-name">Compact powder (bedak padat)</div>
+                            <div class="item-desc">Menurut Anaputri (2022), bedak padat merupakan bedak yang dikemas dalam bentuk padat and penggunaannya dapat menggunakan spons bedak padat ataupun kuas besar.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Eyeshadow.png" alt="Eyeshadow">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">11</div>
+                            <div class="item-name">Eyeshadow (perona mata)</div>
+                            <div class="item-desc">Menurut Dhana, dkk. (2022), <em>eyeshadow</em> berfungsi memberikan warna atau bayangan pada kelopak mata and sekitarnya sehingga mata tampak lebih hidup and indah sesuai warna yang digunakan.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Eyeliner.png" alt="Eyeliner">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">12</div>
+                            <div class="item-name">Eyeliner (penegas garis mata)</div>
+                            <div class="item-desc">Menurut Adisa, V. (2025), <em>eyeliner</em> dapat berbentuk cair, krim/gel, maupun pensil and berfungsi memberi definisi serta mempertegas garis mata agar mata tampak lebih hidup.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Lembulumata.png" alt="Lem bulu mata">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">13</div>
+                            <div class="item-name">Eyelash glue (lem bulu mata)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), lem bulu mata berfungsi untuk menempelkan bulu mata palsu pada kelopak mata.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Highlighter.png" alt="Highlighter">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">14</div>
+                            <div class="item-name">Highlighter (penegas area wajah)</div>
+                            <div class="item-desc">Menurut Adisa, V. (2025), <em>highlighter</em> berfungsi memberikan efek mengkilap pada bagian tertentu wajah sehingga tampak lebih menonjol.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Mascara.png" alt="Mascara">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">15</div>
+                            <div class="item-name">Mascara (maskara)</div>
+                            <div class="item-desc">Menurut Dhana, dkk. (2022), <em>mascara</em> berfungsi untuk menebalkan, melentikkan, and membuat bulu mata kelihatan lebih panjang.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Pensilalis.png" alt="Pensil alis">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">16</div>
+                            <div class="item-name">Eyebrow pencil (pensil alis)</div>
+                            <div class="item-desc">Menurut Dewi (2022), pensil alis dapat digunakan para pemula karena lebih mudah digunakan untuk membentuk alis and mengisi bagian-bagian alis yang kosong. Fungsi lainnya adalah menebalkan warna alis serta menegaskan garis di pinggir alis.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Blushonpowder.png" alt="Blush on powder">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">17</div>
+                            <div class="item-name">Blush on powder (perona pipi bubuk)</div>
+                            <div class="item-desc">Menurut Sulasiyah (2023), <em>blush on powder</em> adalah kosmetik yang umumnya digunakan untuk memerahkan pipi sehingga memberikan penampilan yang lebih muda and menegaskan bentuk tulang pipi agar tampak lebih jelas and meronakan pipi.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Contourpowder.png" alt="Contour powder">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">18</div>
+                            <div class="item-name">Contour Powder (Kontur bubuk)</div>
+                            <div class="item-desc">Menurut Dewi (2022), <em>contour powder</em> digunakan untuk membuat muka tampak lebih terstruktur and tirus. <em>Contour</em> juga dapat digunakan untuk menonjolkan berbagai fitur wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Lipstick.png" alt="Lipstick">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">19</div>
+                            <div class="item-name">Lipstick (perona bibir)</div>
+                            <div class="item-desc">Menurut Dhana, dkk. (2022), produk ini berfungsi memberikan warna pada bibir sehingga menimbulkan kesan tertentu sesuai dengan warna yang digunakan.</div>
+                        </div>
+                    </div>
+
+                </div><!-- end kosmetik grid -->
+            </div><!-- end materi-4 -->
+
+            <!-- MATERI 5 -->
+            <div class="content-section" id="materi-5">
+                <div class="section-label">Materi 5</div>
+                <h1>Prosedur Pelaksanaan Rias Wajah Panggung untuk Peragawati</h1>
+
+                <!-- a) PERSIAPAN -->
+                <div class="subheading">a) Persiapan</div>
+                <div class="items-grid">
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Persiapan_pribadi_baru.jpeg" alt="Persiapan pribadi perias">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Persiapan Pribadi</div>
+                            <div class="item-desc">Melakukan persiapan pribadi sebagai seorang perias (beautician) seperti memakai pakaian kerja (jas lab) yang rapi and bersih, merapikan and menata rambut, memakai riasan yang natural, melepaskan perhiasan yang mengganggu, and melakukan sanitasi tangan sebelum mulai merias.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PersiapanAreaKerja.jpg" alt="Persiapan area kerja">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">2</div>
+                            <div class="item-name">Persiapan Area Kerja</div>
+                            <div class="item-desc">Menata area kerja dengan rapi, memastikan pencahayaan cukup, serta membersihkan meja and kursi kerja sebelum digunakan.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PersiapanAlatBahanKosmetik.jpg" alt="Persiapan alat bahan kosmetik">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">3</div>
+                            <div class="item-name">Persiapan Alat, Bahan, and Kosmetik</div>
+                            <div class="item-desc">Menyusun alat, bahan, lenan, and kosmetik yang diperlukan di atas meja kerja sesuai urutan pemakaian agar memudahkan proses merias.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PersiapanModelKlien.jpg" alt="Persiapan model klien">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">4</div>
+                            <div class="item-name">Persiapan Model/Klien</div>
+                            <div class="item-desc">Membantu melepaskan perhiasan yang mengganggu, membantu model mengenakan cape make up agar baju tidak kotor saat dirias, serta memakaikan hair bando.</div>
+                        </div>
+                    </div>
+
+                </div><!-- end persiapan grid -->
+
+                <!-- b) PELAKSANAAN -->
+                <div class="subheading">b) Pelaksanaan</div>
+                <div class="items-grid">
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-1.jpeg" alt="Pembersihan dan penyegaran">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Pembersihan dan Penyegaran</div>
+                            <div class="item-desc">Membersihkan wajah klien menggunakan <em>milk cleanser</em> and face tonic yang sesuai jenis kulit untuk mengangkat kotoran and menyegarkan kulit.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/MendiagnosaKulitWajah.jpg" alt="Mendiagnosa kondisi kulit wajah">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">2</div>
+                            <div class="item-name">Mendiagnosa Kondisi Kulit Wajah</div>
+                            <div class="item-desc">Tahap ini bertujuan mengetahui kondisi wajah secara keseluruhan sehingga pemilihan kosmetik, warna, and teknik koreksi dapat disesuaikan dengan kebutuhan.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-3.jpeg" alt="Pelembab dan primer">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">3</div>
+                            <div class="item-name">Mengaplikasikan Pelembab dan Primer</div>
+                            <div class="item-desc">Mengaplikasikan pelembab and <em>primer</em> sesuai jenis kulit. Pelembab and <em>primer</em> berfungsi mempertahankan kelembaban kulit and membuat make up lebih tahan lama.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-4.jpeg" alt="Pengaplikasian foundation">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">4</div>
+                            <div class="item-name">Mengaplikasikan Foundation</div>
+                            <div class="item-desc">Mengoleskan <em>foundation</em> atau alas bedak menggunakan kuas atau <em>beauty blender</em>. Hindari penggunaan yang berlebihan atau terlalu tebal. <em>Foundation</em> yang digunakan satu tingkat lebih cerah atau sama dengan warna asli kulit wajah klien.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-5.jpeg" alt="Shading dan tint">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">5</div>
+                            <div class="item-name">Koreksi Wajah dengan Shading dan Tint</div>
+                            <div class="item-desc">Bagian yang perlu dikoreksi diberi shading dalam, sedangkan bagian yang sempurna ditegaskan dengan <em>tint</em>. Noda bekas jerawat ditutup dengan <em>tint</em> atau <em>foundation</em> yang berwarna lebih terang agar tampak rata and tertutup.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-6.jpeg" alt="Bedak tabur">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">6</div>
+                            <div class="item-name">Mengaplikasikan Bedak Tabur</div>
+                            <div class="item-desc">Membubuhkan bedak tabur menggunakan puff bedak tabur atau kuas besar hingga merata. Warna bedak dipilih satu tingkat lebih terang dari warna kulit.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-7.jpeg" alt="Bedak padat">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">7</div>
+                            <div class="item-name">Mengaplikasikan Bedak Padat</div>
+                            <div class="item-desc">Menggunakan bedak padat untuk mengunci minyak and memberi kesan halus pada wajah. Ratakan bedak padat secara merata pada seluruh wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-8.jpeg" alt="Shading luar">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">8</div>
+                            <div class="item-name">Mengaplikasikan Shading Luar</div>
+                            <div class="item-desc">Mengaplikasikan shading luar menggunakan shading berbentuk press powder untuk menegaskan bentuk wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-9.jpeg" alt="Eyeshadow">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">9</div>
+                            <div class="item-name">Mengaplikasikan Eyeshadow</div>
+                            <div class="item-desc">Mengaplikasikan <em>eyeshadow</em> atau perona mata sesuai busana and kesempatan yang akan dihadiri sehingga tampilan mata serasi dengan keseluruhan penampilan.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-10.jpeg" alt="Eyeliner">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">10</div>
+                            <div class="item-name">Mengaplikasikan Eyeliner</div>
+                            <div class="item-desc">Mengaplikasikan <em>eyeliner</em> pada garis mata atas and bawah untuk mempertegas garis mata sehingga mata tampak lebih hidup.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <div style="display: flex; gap: 5px; width: 100%;">
+                                <img src="assets/PELAKSANAAN-11-1.jpeg" alt="Bulu mata palsu 1" style="width: 48%; height: auto;">
+                                <img src="assets/PELAKSANAAN-11-2.jpeg" alt="Bulu mata palsu 2" style="width: 48%; height: auto;">
+                            </div>
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">11</div>
+                            <div class="item-name">Memasang Bulu Mata Palsu &amp; Mascara</div>
+                            <div class="item-desc">Memasang bulu mata palsu and mengaplikasikan <em>mascara</em> untuk memberikan tampilan mata yang lebih hidup sekaligus menutupi kekurangan pada area sekitar mata.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-12.jpeg" alt="Membentuk alis">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">12</div>
+                            <div class="item-name">Membentuk Alis</div>
+                            <div class="item-desc">Alis disikat agar rapi, kemudian dibingkai and diisi dengan pensil alis atau <em>eyebrow gel</em>. Rapikan dengan <em>concealer</em>. Jika bulu alis kurang tebal, dapat ditambah <em>mascara</em> tipis di atas bulu alis.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-13.jpeg" alt="Blush on">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">13</div>
+                            <div class="item-name">Mengaplikasikan Blush On</div>
+                            <div class="item-desc">Mengaplikasikan <em>blush on</em> atau perona pipi pada tulang pipi menggunakan kuas dengan warna senada. Hindari sapuan terlalu ke bawah. Arah usap ke samping luar menyatu dengan garis rambut di pelipis.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-14.jpeg" alt="Lipstick">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">14</div>
+                            <div class="item-name">Mengaplikasikan Lipstick</div>
+                            <div class="item-desc">Membentuk bibir dengan <em>lip liner</em>, melakukan koreksi jika diperlukan, lalu mengaplikasikan <em>lipstick</em> and <em>lip gloss</em> untuk memberikan tampilan bibir yang segar.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/PELAKSANAAN-15.jpeg" alt="Highlighter">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">15</div>
+                            <div class="item-name">Mengaplikasikan Highlighter</div>
+                            <div class="item-desc">Mengaplikasikan <em>highlighter</em> pada bagian menonjol seperti tulang pipi, sekitar hidung, tulang alis, dahi, and dagu sesuai koreksi bentuk wajah.</div>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/HasilAkhirRiasWajahPanggungPeragawatiModelcatwalkbaru.png" alt="Hasil akhir rias wajah panggung">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">16</div>
+                            <div class="item-name">Memeriksa Hasil Akhir Riasan</div>
+                            <div class="item-desc">Memastikan seluruh bagian riasan sudah rapi, simetris, and sesuai dengan desain yang direncanakan. Lakukan perbaikan (touch-up) jika ada bagian yang kurang sempurna.</div>
+                        </div>
+                    </div>
+
+                </div><!-- end pelaksanaan grid -->
+
+                <!-- c) BERKEMAS -->
+                <div class="subheading">c) Berkemas</div>
+                <div class="items-grid">
+                    <div class="item-card">
+                        <div class="item-img-box">
+                            <img src="assets/Berkemas.jpg" alt="Berkemas">
+                            <div class="item-img-caption">(Sumber: Direktorat SMK, 2022)</div>
+                        </div>
+                        <div class="item-text-box">
+                            <div class="item-number">1</div>
+                            <div class="item-name">Membersihkan Area Kerja</div>
+                            <div class="item-desc">Setelah proses rias selesai, bersihkan kembali area kerja, cuci alat yang telah digunakan, and simpan kembali kosmetik ke tempat semula agar tetap higienis and rapi.</div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end materi-5 -->
+
+            <!-- VIDEO SECTION -->
+            <div class="content-section" id="video-section">
+                <div class="section-label">Video</div>
+                <h1>Video Pembelajaran Rias Wajah Panggung</h1>
+                <p class="section-text">Tonton video tutorial berikut untuk memahami lebih dalam teknik-teknik rias wajah panggung yang telah dipelajari.</p>
+                <div class="image-box">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px;">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="caption">Video Tutorial Rias Wajah Panggung (Contoh)</div>
+                </div>
+            </div>
+
         </div>
-    </main>
+    </section>
+</main>
 
-    <script>
-        function showTab(tabId, btn) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(s => s.classList.remove('active'));
+<script>
+    function showTab(tabId, btn) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(s => s.classList.remove('active-section'));
 
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(b => b.classList.remove('active'));
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(b => {
+            b.classList.remove('active');
+            b.classList.add('secondary');
+        });
 
-            // Show current section and active button
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
+        // Show current section and active button
+        document.getElementById(tabId).classList.add('active-section');
+        btn.classList.add('active');
+        btn.classList.remove('secondary');
 
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 </body>
 </html>
