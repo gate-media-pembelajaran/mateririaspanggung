@@ -50,32 +50,36 @@
             padding: 22px 24px 26px;
         }
 
-        .tabs-strip-wrapper { overflow-x: auto; padding-bottom: 4px; }
-        .tabs-strip-wrapper::-webkit-scrollbar { height: 4px; }
-        .tabs-strip-wrapper::-webkit-scrollbar-thumb { background: rgba(13,71,161,0.45); border-radius: 999px; }
+        .tabs-strip-wrapper { 
+            overflow-x: auto; 
+            padding-bottom: 8px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        .tabs-strip-wrapper::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
         .tabs-strip {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
+            display: inline-flex;
+            flex-wrap: nowrap;
+            gap: 6px;
+            margin-bottom: 10px;
             background: rgba(13,71,161,0.08);
             border-radius: 999px;
             padding: 6px;
-            box-shadow: 0 10px 26px rgba(13,71,161,0.18);
+            box-shadow: 0 10px 26px rgba(13,71,161,0.12);
+            min-width: 100%;
         }
 
         .tab-btn {
-            flex: 1 1 120px;
-            min-width: 120px;
-            padding: 8px 14px;
+            flex: 0 0 auto;
+            padding: 10px 20px;
             border-radius: 999px;
             border: 1px solid transparent;
             background: linear-gradient(135deg, #1976D2, #4169E1);
             color: #ffffff;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
             text-align: center;
             cursor: pointer;
